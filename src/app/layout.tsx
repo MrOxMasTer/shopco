@@ -1,11 +1,23 @@
 import { cn } from '@/shared/lib/utils/cn';
+import { Header } from '@/widgets/Header';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import localFont from 'next/font/local';
 import './globals.css';
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
+const satoshi = localFont({
+  src: '../shared/assets/fonts/Satoshi-Variable.ttf',
+  display: 'swap',
+  variable: '--font-satoshi',
+  weight: '400 600',
+  style: 'normal',
+});
+
+const interfralCF = localFont({
+  src: '../shared/assets/fonts/IntegralCF-Bold.woff2',
+  display: 'swap',
+  variable: '--font-intergralCF-bold',
+  weight: '600',
+  style: 'normal',
 });
 
 export const metadata: Metadata = {
@@ -21,9 +33,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={cn(`${inter.variable}`, {
+        className={cn(`${satoshi.variable} ${interfralCF.variable}`, {
           'debug-screens': process.env.NODE_ENV === 'development',
         })}>
+        <Header />
         {children}
       </body>
     </html>

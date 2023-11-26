@@ -8,15 +8,15 @@ const config: Config = {
       center: true,
       padding: {
         DEFAULT: '1rem',
-        mm: '1.875rem',
+        mm: '1rem',
         mt: '4rem',
         md: '5rem',
       },
     },
     screens: {
       sm: '320px',
-      mm: '375px',
-      mt: '768px',
+      mm: '390px',
+      mt: '4rem',
       md: '1440px',
     },
     debugScreens: {},
@@ -24,7 +24,8 @@ const config: Config = {
     boxShadow: {},
     extend: {
       fontFamily: {
-        base: ['var(--font-inter)'],
+        base: ['var(--font-satoshi)'],
+        integralCF: ['var(--font-intergralCF-bold)'],
       },
       backgroundImage: {},
       backgroundPosition: {},

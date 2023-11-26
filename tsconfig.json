@@ -21,7 +21,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "#/*": ["./*"],
-      "@svg/*": ["./public/svg/*"]
+      "@svg/*": ["./src/shared/assets/svg/*"]
     }
   },
   "include": [
