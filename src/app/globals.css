@@ -28,7 +28,85 @@
 }
 
 @layer components {
+  .btn {
+    @apply flex w-full items-center justify-center py-4 font-medium;
+    min-height: 52px;
+    border-radius: 62px;
+    background: theme(colors.black);
+    color: theme(colors.white);
+  }
 }
 
 @layer utilities {
+  .list-advantages {
+    @apply grid grid-cols-2 justify-center;
+    column-gap: 27.5px;
+    row-gap: 14px;
+    grid-template-columns: repeat(2, auto);
+
+    & > li {
+      @apply flex;
+      gap: 27.5px;
+    }
+
+    & > li > div > div {
+      @apply text-2xl font-bold text-black;
+      line-height: normal;
+    }
+
+    & > li > div > span {
+      @apply block text-xs text-black/60;
+      line-height: 22px;
+    }
+
+    & > li:first-child::after {
+      content: '';
+
+      height: 100%;
+      width: 1px;
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    & > li:last-child {
+      grid-column-start: 1;
+      grid-column-end: 3;
+
+      div {
+        @apply mx-auto;
+      }
+    }
+  }
+
+  /* .row {
+    grid-column: span 2;
+  } */
+
+  .list-brands {
+    @apply container grid py-10;
+    grid-template-columns: repeat(6, 1fr);
+    /* column-gap: 34px; */
+    /* justify-content: space-between; */
+    row-gap: 22px;
+
+    /* grid-area: 3 row-1 / 2 row-2; */
+
+    & > li {
+      display: flex;
+      justify-content: center;
+    }
+
+    & > li:nth-child(n) {
+      grid-column: span 2;
+    }
+
+    & > li:nth-last-child(2) {
+      grid-column: 1 / span 3;
+      grid-row-start: 2;
+    }
+
+    & > li:last-child {
+      grid-column: 4 / span 3;
+      grid-row-start: 2;
+    }
+  }
 }

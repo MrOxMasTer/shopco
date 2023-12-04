@@ -8,6 +8,7 @@ const config: Config = {
       center: true,
       padding: {
         DEFAULT: '1rem',
+        sm: '1rem',
         mm: '1rem',
         mt: '4rem',
         md: '5rem',
@@ -16,15 +17,20 @@ const config: Config = {
     screens: {
       sm: '320px',
       mm: '390px',
-      mt: '4rem',
+      mt: '768px',
       md: '1440px',
     },
     debugScreens: {},
-    colors: { transparent: 'rgba(0, 0, 0, 0)', black: '#000', white: '#FFF' },
+    colors: {
+      transparent: 'rgba(0, 0, 0, 0)',
+      black: '#000',
+      white: '#FFF',
+      bonJour: '#F2F0F1',
+    },
     boxShadow: {},
     extend: {
       fontFamily: {
-        base: ['var(--font-satoshi)'],
+        satoshi: ['var(--font-satoshi)'],
         integralCF: ['var(--font-intergralCF-bold)'],
       },
       backgroundImage: {},

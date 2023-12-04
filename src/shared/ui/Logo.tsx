@@ -1,13 +1,12 @@
-import SvgLogo from '@svg/shopco.svg?icon';
+import SvgLogo from '@svg/logo.svg?icon';
 import Link from 'next/link';
+import { ComponentProps } from 'react';
 
-interface LogoProps {
-  href: string;
-}
+type LogoProps = ComponentProps<typeof Link>;
 
-export const Logo = ({ href, ...props }: LogoProps) => {
+export const Logo = ({ ...props }: LogoProps) => {
   return (
-    <Link href={href} {...props}>
+    <Link {...props}>
       <SvgLogo />
     </Link>
   );
