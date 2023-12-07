@@ -8,15 +8,16 @@ import { ListBrands } from './ListBtands';
 export const Hero = () => {
   return (
     <section className="relative overflow-hidden bg-bonJour">
-      <Image
-        src={BannerImage}
-        alt="2 models"
-        className="absolute bottom-0 left-0 z-0 translate-y-[-10px] scale-[1.20] object-cover"
-      />
-      <SvgStar className="absolute bottom-[430px] left-[27px] z-10 h-[44px] w-[44px]" />
-      <SvgStar className="absolute bottom-[500px] right-[21px] z-10" />
-      <div className="relative z-10 pb-[462px] pt-10">
-        <div className="container">
+      <div className="absolute bottom-0 z-0 max-h-[550px] w-full">
+        <Image
+          priority
+          src={BannerImage}
+          alt="2 models"
+          className="translate-y-[-38px] scale-[1.20]"
+        />
+      </div>
+      <div className="relative z-10 mb-[462px] pt-10">
+        <div className="container relative">
           <h2 className="font-integralCF text-4xl font-bold leading-[34px] text-black">
             FIND CLOTHES THAT MATCHES YOUR STYLE
           </h2>
@@ -29,6 +30,8 @@ export const Hero = () => {
             Shop Now
           </Link>
           <ListAdvantages />
+          <SvgStar className="absolute bottom-[-190px] left-[6.92%] z-10 h-[44px] w-[44px]" />
+          <SvgStar className="absolute bottom-[-110px] right-[5.38%] z-10" />
         </div>
       </div>
       <ListBrands />
