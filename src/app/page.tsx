@@ -1,4 +1,5 @@
 import { Hero } from '@/widgets/Hero';
+import { NewArrivals } from '@/widgets/NewArrivals';
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       </h1>
       <main>
         <Hero />
+        <NewArrivals />
       </main>
     </>
   );

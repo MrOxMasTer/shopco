@@ -8,7 +8,7 @@ import { ListBrands } from './ListBtands';
 export const Hero = () => {
   return (
     <section className="relative overflow-hidden bg-bonJour">
-      <div className="absolute bottom-0 z-0 max-h-[550px] w-full">
+      <div className="image-hero absolute bottom-0 z-0 max-h-[550px] w-full">
         <Image
           priority
           src={BannerImage}
@@ -26,12 +26,12 @@ export const Hero = () => {
             designed to bring out your individuality and cater to your sense of
             style.
           </p>
-          <Link className="btn mt-6" href={'/'}>
+          <Link className="btn mt-6 font-medium" href={'/'}>
             Shop Now
           </Link>
           <ListAdvantages />
-          <SvgStar className="absolute bottom-[-190px] left-[6.92%] z-10 h-[44px] w-[44px]" />
-          <SvgStar className="absolute bottom-[-110px] right-[5.38%] z-10" />
+          <SvgStar className="star absolute bottom-[-190px] left-[6.92%] z-10 h-[44px] w-[44px]" />
+          <SvgStar className="star absolute bottom-[-110px] right-[5.38%] z-10" />
         </div>
       </div>
       <ListBrands />

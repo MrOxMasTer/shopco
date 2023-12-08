@@ -26,6 +26,8 @@ const config: Config = {
       black: '#000',
       white: '#FFF',
       bonJour: '#F2F0F1',
+      ebb: '#F0EEED',
+      redOrange: '#F33',
     },
     boxShadow: {},
     extend: {
