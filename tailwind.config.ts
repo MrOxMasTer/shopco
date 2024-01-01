@@ -28,6 +28,7 @@ const config: Config = {
       bonJour: '#F2F0F1',
       ebb: '#F0EEED',
       redOrange: '#F33',
+      gallery: '#f0f0f0',
     },
     boxShadow: {},
     extend: {

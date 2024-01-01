@@ -1,8 +1,8 @@
+import { Cart } from '@/shared/ui/Cart';
 import { Logo } from '@/shared/ui/Logo';
-import { Cart } from '../../../shared/ui/Cart';
-import { Menu } from '../../../shared/ui/Menu';
-import { Profile } from '../../../shared/ui/Profile';
-import { Search } from '../../../shared/ui/Search';
+import { Menu } from '@/shared/ui/Menu';
+import { Profile } from '@/shared/ui/Profile';
+import { Search } from '@/shared/ui/Search';
 
 export const Header = () => {
   return (

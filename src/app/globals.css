@@ -28,8 +28,17 @@
 }
 
 @layer components {
+  .stn_title {
+    font-family: var(--font-intergralCF-bold);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 36px;
+    text-align: center;
+    color: #000;
+  }
+
   .btn {
-    @apply flex w-full items-center justify-center py-4;
+    @apply flex w-full items-center justify-center py-3;
     min-height: 52px;
     border-radius: 62px;
     background: theme(colors.black);
@@ -37,8 +46,8 @@
   }
 
   .btn_lght {
-    @apply flex w-full items-center justify-center py-4;
-    min-height: 52px;
+    @apply flex w-full items-center justify-center py-3;
+    min-height: 46px;
     border-radius: 62px;
     background-color: theme(colors.white);
     color: theme(colors.black);
@@ -46,7 +55,7 @@
   }
 
   .discount {
-    @apply text-redOrange bg-redOrange/10 flex h-5 items-center justify-center text-[0.625rem] font-medium;
+    @apply flex h-5 items-center justify-center bg-redOrange/10 text-[0.625rem] font-medium text-redOrange;
 
     width: 42px;
   }
