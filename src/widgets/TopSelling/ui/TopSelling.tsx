@@ -1,48 +1,44 @@
-// 'use client';
-
 import { CardProduct, Product } from '@/entities/Product';
 import Link from 'next/link';
 
 const products: Product[] = [
   {
     id: 'prod1',
-    price: 100,
-    rating: 3,
-    src: '/t-shirt.png',
-    title: 'T-shirt with Tape Details',
+    price: 232,
+    rating: 5.0,
+    discount: 20,
+    discountedPrice: 212,
+    src: '/striped_shirt.png',
+    title: 'Vertical Striped Shirt',
   },
   {
     id: 'prod2',
-    price: 260,
-    rating: 3.5,
-    discount: 20,
-    discountedPrice: 240,
-    src: '/jeans.png',
-    title: 'Skinny Fit Jeans',
+    price: 145,
+    rating: 4.0,
+    src: '/graphic_t-shirt.png',
+    title: 'Courage Graphic T-Shirt',
   },
   {
     id: 'prod3',
     price: 180,
-    rating: 4.5,
-    src: '/shirt.png',
-    title: 'Checkered Shirt',
+    rating: 3.0,
+    src: '/shorts.png',
+    title: 'Loose Fit Bermuda Shorts',
   },
   {
     id: 'prod4',
-    price: 160,
+    price: 210,
     rating: 4.5,
-    discount: 30,
-    discountedPrice: 130,
-    src: '/sleeve_t-shirt.png',
-    title: 'Sleeve Striped T-Shirt',
+    src: '/faded_jeans.png',
+    title: 'Faded Skinny Jeans',
   },
 ];
 
-export const NewArrivals = () => {
+export const TopSelling = () => {
   return (
     <section>
       <div className="container pb-10">
-        <h2 className="stn_title mt-[3.125rem]">new arrivals</h2>
+        <h2 className="stn_title mt-[3.125rem]">Top Selling</h2>
         <div className="container_products mt-8">
           {products.map((item) => (
             <CardProduct key={item.id} product={item} />

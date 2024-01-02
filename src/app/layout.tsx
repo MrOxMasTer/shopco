@@ -8,7 +8,7 @@ const satoshi = localFont({
   src: '../shared/assets/fonts/Satoshi-Variable.ttf',
   display: 'swap',
   variable: '--font-satoshi',
-  weight: '400 600',
+  weight: '400 700',
   style: 'normal',
 });
 

@@ -58,13 +58,26 @@
     @apply flex h-5 items-center justify-center bg-redOrange/10 text-[0.625rem] font-medium text-redOrange;
 
     width: 42px;
+    border-radius: 62px;
   }
 
-  .crossedOutPrice {
+  .discount_price {
     @apply text-black/40;
 
     text-decoration: line-through;
     text-decoration-line: strikethrough;
+  }
+
+  .container_products {
+    @apply flex gap-4 overflow-x-scroll;
+
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+    overflow: -moz-scrollbars-none;
+
+    &::-webkit-scrollbar {
+      display: none; /* Safari and Chrome */
+    }
   }
 }
 
