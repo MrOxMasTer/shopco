@@ -1,4 +1,4 @@
-import { CardProduct, Product } from '@/entities/Product';
+import { ListCardsProduct, Product } from '@/entities/Product';
 import Link from 'next/link';
 
 const products: Product[] = [
@@ -38,15 +38,19 @@ export const TopSelling = () => {
   return (
     <section>
       <div className="container pb-10">
-        <h2 className="stn_title mt-[3.125rem]">Top Selling</h2>
-        <div className="container_products mt-8">
-          {products.map((item) => (
-            <CardProduct key={item.id} product={item} />
-          ))}
+        <div className="border-t border-solid border-black/10">
+          <h2 className="stn_title mt-10">Top Selling</h2>
+          <ListCardsProduct
+            className="container_products mt-8"
+            listProducts={products}
+          />
+          <Link
+            aria-label="Link on a page with sales tops"
+            className="btn_lght mt-6 py-3 text-sm font-semibold"
+            href="/">
+            View All
+          </Link>
         </div>
-        <Link className="btn_lght mt-6 text-sm font-semibold" href="/">
-          View All
-        </Link>
       </div>
     </section>
   );

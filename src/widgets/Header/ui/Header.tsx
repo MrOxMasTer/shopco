@@ -11,10 +11,7 @@ export const Header = () => {
         <div className="flex justify-between py-5">
           <div className="flex items-center justify-start gap-4">
             <Menu aria-label="menu button" href={'/'} />
-            <Logo
-              aria-label="ссылка-логотип ведущая на главную станицу"
-              href={'/'}
-            />
+            <Logo aria-label="Link-votip leading to the main page" href={'/'} />
           </div>
           <div className="flex gap-3">
             <Search />

@@ -29,6 +29,7 @@ const config: Config = {
       ebb: '#F0EEED',
       redOrange: '#F33',
       gallery: '#f0f0f0',
+      greenHaze: '#01AB31',
     },
     boxShadow: {},
     extend: {

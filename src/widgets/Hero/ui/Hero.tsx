@@ -26,7 +26,7 @@ export const Hero = () => {
             designed to bring out your individuality and cater to your sense of
             style.
           </p>
-          <Link className="btn mt-6 font-medium" href={'/'}>
+          <Link className="btn mt-6 py-4 font-medium" href={'/'}>
             Shop Now
           </Link>
           <ListAdvantages />

@@ -1,6 +1,6 @@
 // 'use client';
 
-import { CardProduct, Product } from '@/entities/Product';
+import { ListCardsProduct, Product } from '@/entities/Product';
 import Link from 'next/link';
 
 const products: Product[] = [
@@ -43,12 +43,14 @@ export const NewArrivals = () => {
     <section>
       <div className="container pb-10">
         <h2 className="stn_title mt-[3.125rem]">new arrivals</h2>
-        <div className="container_products mt-8">
-          {products.map((item) => (
-            <CardProduct key={item.id} product={item} />
-          ))}
-        </div>
-        <Link className="btn_lght mt-6 text-sm font-semibold" href="/">
+        <ListCardsProduct
+          className="container_products mt-8"
+          listProducts={products}
+        />
+        <Link
+          aria-label="Link to a page with new products"
+          className="btn_lght mt-6 py-3 text-sm font-semibold"
+          href="/">
           View All
         </Link>
       </div>

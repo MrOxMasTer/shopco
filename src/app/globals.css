@@ -38,16 +38,16 @@
   }
 
   .btn {
-    @apply flex w-full items-center justify-center py-3;
-    min-height: 52px;
+    @apply flex w-full items-center justify-center;
+    min-height: 40px;
     border-radius: 62px;
     background: theme(colors.black);
     color: theme(colors.white);
   }
 
   .btn_lght {
-    @apply flex w-full items-center justify-center py-3;
-    min-height: 46px;
+    @apply flex w-full items-center justify-center;
+    min-height: 40px;
     border-radius: 62px;
     background-color: theme(colors.white);
     color: theme(colors.black);
