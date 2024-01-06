@@ -49,8 +49,21 @@ const nextConfig = {
               svgo: true,
               titleProp: true,
               typescript: true,
+              // dimensions: false,
               ext: 'tsx',
-              // svgoConfig: { plugins: [{ removeViewBox: false }] },
+              expandProps: 'end',
+              svgoConfig: {
+                plugins: [
+                  {
+                    name: 'preset-default',
+                    params: {
+                      overrides: {
+                        removeViewBox: false,
+                      },
+                    },
+                  },
+                ],
+              },
             },
           },
         ],

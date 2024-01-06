@@ -11,7 +11,7 @@ export const Rating = ({ value, ...props }: RatingProps) => {
   const [normalValue, setNormalValue] = useState<number[]>([]);
 
   useEffect(() => {
-    let arr = [];
+    const arr = [];
     let temp = value;
 
     while (temp >= 0.5) {
@@ -25,10 +25,6 @@ export const Rating = ({ value, ...props }: RatingProps) => {
 
     setNormalValue(arr);
   }, [value]);
-
-  useEffect(() => {
-    console.log(normalValue);
-  }, [normalValue]);
 
   const id = useId();
 

@@ -1,5 +1,5 @@
+import { Logo } from '@/shared/ui';
 import { Cart } from '@/shared/ui/Cart';
-import { Logo } from '@/shared/ui/Logo';
 import { Menu } from '@/shared/ui/Menu';
 import { Profile } from '@/shared/ui/Profile';
 import { Search } from '@/shared/ui/Search';

@@ -54,6 +54,14 @@
     border: 1px solid rgba(0, 0, 0, 0.1);
   }
 
+  .icon {
+    @apply flex min-h-[28px] min-w-[28px] items-center justify-center rounded-full bg-black;
+  }
+
+  .icon_lght {
+    @apply flex min-h-[28px] min-w-[28px] items-center justify-center rounded-full border border-solid border-black/60 bg-white;
+  }
+
   .discount {
     @apply flex h-5 items-center justify-center bg-redOrange/10 text-[0.625rem] font-medium text-redOrange;
 
@@ -78,6 +86,12 @@
     &::-webkit-scrollbar {
       display: none; /* Safari and Chrome */
     }
+  }
+
+  .badge {
+    @apply flex h-[26px] w-10 items-center justify-center rounded-[4.6px] border border-solid border-geyser bg-white;
+    filter: drop-shadow(0px 0.384px 3.842px rgba(183, 183, 183, 0.08))
+      drop-shadow(0px 3.842px 7.684px rgba(183, 183, 183, 0.08));
   }
 }
 

@@ -1,4 +1,5 @@
 import { cn } from '@/shared/lib/utils/cn';
+import { Footer } from '@/widgets/Footer';
 import { Header } from '@/widgets/Header';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
@@ -38,6 +39,7 @@ export default function RootLayout({
         })}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

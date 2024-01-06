@@ -6,5 +6,6 @@
   "exportall.config.folderListener": [
     "/src/entities/Product/ui",
     "/src/entities/Product"
-  ]
+  ],
+  "window.title": "${dirty}${separator}${activeEditorShort}${separator}${rootName}"
 }
