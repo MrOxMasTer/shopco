@@ -6,7 +6,7 @@ import SvgVisa from '@svg/Visa.svg?icon';
 
 const list = [
   {
-    Conmponent: SvgVisa,
+    Component: SvgVisa,
     name: 'Visa',
   },
   {
@@ -15,9 +15,19 @@ const list = [
   },
   {
     Component: SvgPayPal,
+    name: 'PayPal',
   },
   {
     Component: SvgGooglePay,
+    name: 'GooglePay',
   },
-  { Component: SvgApplePay, name: 'ApplePay' },
+  {
+    Component: SvgApplePay,
+    name: 'ApplePay',
+  },
 ];
+
+export const listBadge = list.map((item) => ({
+  ...item,
+  id: `list_badge_${item.name}`,
+}));
