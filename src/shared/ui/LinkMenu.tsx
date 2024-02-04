@@ -2,11 +2,11 @@ import SvgMenu from '@svg/menu.svg?icon';
 import Link from 'next/link';
 import { ComponentProps } from 'react';
 
-type MenuProps = ComponentProps<typeof Link>;
+type LinkMenuProps = ComponentProps<typeof Link>;
 
-export const Menu = ({ ...props }: MenuProps) => {
+export const LinkMenu = ({ ...props }: LinkMenuProps) => {
   return (
-    <Link {...props}>
+    <Link prefetch={true} {...props}>
       <SvgMenu />
     </Link>
   );

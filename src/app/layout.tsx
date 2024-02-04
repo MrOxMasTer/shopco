@@ -28,8 +28,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  menu,
 }: {
   children: React.ReactNode;
+  menu: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -39,6 +41,7 @@ export default function RootLayout({
         })}>
         <Header />
         {children}
+        {menu}
         <Footer />
       </body>
     </html>

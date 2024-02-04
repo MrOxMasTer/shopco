@@ -41,18 +41,20 @@ const products: Product[] = [
 export const NewArrivals = () => {
   return (
     <section>
-      <div className="container pb-10">
+      <div className="pb-10">
         <h2 className="stn_title mt-[3.125rem]">new arrivals</h2>
         <ListCardsProduct
           className="container_products mt-8"
           listProducts={products}
         />
-        <Link
-          aria-label="Link to a page with new products"
-          className="btn_lght mt-6 py-3 text-sm font-semibold"
-          href="/">
-          View All
-        </Link>
+        <div className="container">
+          <Link
+            aria-label="Link to a page with new products"
+            className="btn_lght mt-6 py-3 text-sm font-semibold"
+            href="/">
+            View All
+          </Link>
+        </div>
       </div>
     </section>
   );

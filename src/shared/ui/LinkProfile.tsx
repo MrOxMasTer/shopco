@@ -2,9 +2,9 @@ import SvgProfile from '@svg/profile.svg?icon';
 import Link from 'next/link';
 import { ComponentProps } from 'react';
 
-type ProfileProps = ComponentProps<typeof Link>;
+type LinkProfileProps = ComponentProps<typeof Link>;
 
-export const Profile = ({ ...props }: ProfileProps) => {
+export const LinkProfile = ({ ...props }: LinkProfileProps) => {
   return (
     <Link {...props}>
       <SvgProfile />

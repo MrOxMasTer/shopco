@@ -1,4 +1,4 @@
-import { Logo } from '@/shared';
+import { LinkLogo } from '@/shared/index';
 import { company } from '../constants/listCompany';
 import { faq } from '../constants/listFAQ';
 import { help } from '../constants/listHelp';
@@ -11,7 +11,7 @@ export const Footer = () => {
   return (
     <footer>
       <div className="container pb-[4.8125rem]">
-        <Logo href="/" width={144} height={23} />
+        <LinkLogo href="/" width={144} height={23} />
         <p className="mt-[0.875rem] text-sm text-black/60">
           We have clothes that suits your style and which you’re proud to wear.
           From women to men.

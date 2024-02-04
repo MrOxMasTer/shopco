@@ -1,0 +1,27 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1706723156150,
+      "tag": "0000_dear_queen_noir",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1706992812191,
+      "tag": "0001_aspiring_red_ghost",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1706997123312,
+      "tag": "0002_chunky_peter_parker",
+      "breakpoints": true
+    }
+  ]
+}

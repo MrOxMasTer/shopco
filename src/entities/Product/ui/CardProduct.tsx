@@ -1,4 +1,4 @@
-import { cn } from '@/shared';
+import { cn } from '@/shared/index';
 import { Rating } from '@/shared/ui';
 import Image from 'next/image';
 import Link from 'next/link';

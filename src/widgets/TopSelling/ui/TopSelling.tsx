@@ -37,19 +37,21 @@ const products: Product[] = [
 export const TopSelling = () => {
   return (
     <section>
-      <div className="container pb-10">
+      <div className="pb-10">
         <div className="border-t border-solid border-black/10">
           <h2 className="stn_title mt-10">Top Selling</h2>
           <ListCardsProduct
             className="container_products mt-8"
             listProducts={products}
           />
-          <Link
-            aria-label="Link on a page with sales tops"
-            className="btn_lght mt-6 py-3 text-sm font-semibold"
-            href="/">
-            View All
-          </Link>
+          <div className="container">
+            <Link
+              aria-label="Link on a page with sales tops"
+              className="btn_lght mt-6 py-3 text-sm font-semibold"
+              href="/">
+              View All
+            </Link>
+          </div>
         </div>
       </div>
     </section>

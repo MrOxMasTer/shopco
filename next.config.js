@@ -3,6 +3,11 @@ const nextConfig = {
   experimental: {
     ppr: true,
   },
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
   reactStrictMode: true,
   images: {
     formats: ['image/avif', 'image/webp'],

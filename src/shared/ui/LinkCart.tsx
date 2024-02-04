@@ -2,9 +2,9 @@ import SvgCart from '@svg/cart.svg?icon';
 import Link from 'next/link';
 import { ComponentProps } from 'react';
 
-type CartProps = ComponentProps<typeof Link>;
+type LinkCartProps = ComponentProps<typeof Link>;
 
-export const Cart = ({ ...props }: CartProps) => {
+export const LinkCart = ({ ...props }: LinkCartProps) => {
   return (
     <Link {...props}>
       <SvgCart />
