@@ -1,13 +1,11 @@
 import { cn } from '@/shared/lib/utils/cn';
-import { Footer } from '@/widgets/Footer';
-import { Header } from '@/widgets/Header';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 
 const satoshi = localFont({
   src: '../shared/assets/fonts/Satoshi-Variable.ttf',
-  display: 'swap',
+  display: 'block',
   variable: '--font-satoshi',
   weight: '400 700',
   style: 'normal',
@@ -15,7 +13,7 @@ const satoshi = localFont({
 
 const interfralCF = localFont({
   src: '../shared/assets/fonts/IntegralCF-Bold.woff2',
-  display: 'swap',
+  display: 'block',
   variable: '--font-intergralCF-bold',
   weight: '600',
   style: 'normal',
@@ -28,10 +26,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  menu,
 }: {
   children: React.ReactNode;
-  menu: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -39,10 +35,7 @@ export default function RootLayout({
         className={cn(`${satoshi.variable} ${interfralCF.variable}`, {
           'debug-screens': process.env.NODE_ENV === 'development',
         })}>
-        <Header />
         {children}
-        {menu}
-        <Footer />
       </body>
     </html>
   );

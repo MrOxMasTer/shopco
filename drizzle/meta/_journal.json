@@ -22,6 +22,13 @@
       "when": 1706997123312,
       "tag": "0002_chunky_peter_parker",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1707218256661,
+      "tag": "0003_plain_vargas",
+      "breakpoints": true
     }
   ]
 }

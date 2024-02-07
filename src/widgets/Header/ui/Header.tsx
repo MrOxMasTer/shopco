@@ -8,15 +8,7 @@ export const Header = () => {
       <div className="container">
         <div className="flex justify-between py-5">
           <div className="flex items-center justify-start gap-4">
-            <LinkMenu
-              aria-label="menu button"
-              href={{
-                pathname: '/',
-                query: {
-                  isOpenedMenu: true,
-                },
-              }}
-            />
+            <LinkMenu prefetch={true} aria-label="menu button" href="/menu" />
             <LinkLogo
               aria-label="Link-votip leading to the main page"
               href={'/'}
@@ -27,7 +19,7 @@ export const Header = () => {
             <LinkCart aria-label="Link to the site of the cart" href={'/'} />
             <LinkProfile
               aria-label="Link leading to personal account"
-              href={'/'}
+              href={'/sigin'}
             />
           </div>
         </div>

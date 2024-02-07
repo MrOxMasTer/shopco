@@ -17,8 +17,8 @@ export const PostalMailing = () => {
             Stay Upto Date About Our Latest Offers
           </h2>
           <form action={mailDelivery}>
-            <div className="mt-8 flex h-[42px] items-center gap-[14px] rounded-[62px] bg-white px-4 text-sm">
-              <SvgMail className="flex-shrink-0" />
+            <div className="field mt-8 h-[42px] gap-[14px] bg-white text-sm">
+              <SvgMail className="shrink-0" />
               <input
                 // name="email"
                 autoComplete="email"

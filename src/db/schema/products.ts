@@ -13,7 +13,7 @@ import { productsToColors, productsToSizes, productsToStyles, types } from '.';
 export const products = pgTable('products', {
   id: serial('id').primaryKey(),
   name: varchar('name', { length: 256 }).notNull(),
-  type: varchar('type', { length: 128 }).references(() => types.value),
+  type: integer('type').notNull().references(() => types.id),
   rating: numeric('rating', {
     precision: 2,
     scale: 1,
@@ -32,7 +32,7 @@ export type Product = InferInsertModel<typeof products>;
 export const productsRelations = relations(products, ({ many, one }) => ({
   type: one(types, {
     fields: [products.type],
-    references: [types.value],
+    references: [types.id],
   }),
   productsToColors: many(productsToColors),
   productsToSizes: many(productsToSizes),

@@ -6,7 +6,7 @@ type LinkMenuProps = ComponentProps<typeof Link>;
 
 export const LinkMenu = ({ ...props }: LinkMenuProps) => {
   return (
-    <Link prefetch={true} {...props}>
+    <Link {...props}>
       <SvgMenu />
     </Link>
   );

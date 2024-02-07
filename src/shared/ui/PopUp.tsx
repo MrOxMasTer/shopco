@@ -1,33 +1,35 @@
 'use client';
 
-import { ReactNode, useEffect, useRef } from 'react';
+import { ComponentProps, useEffect, useRef } from 'react';
 import FocusLock from 'react-focus-lock';
 
 type PopUpProps = {
-  children?: ReactNode;
-  isOpened: string;
-  className: string;
-};
+  modal?: boolean;
+} & ComponentProps<'dialog'>;
 
-export const PopUp = ({
-  className,
-  children,
-  isOpened = 'false',
-  ...props
-}: PopUpProps) => {
+export const PopUp = ({ className, children, modal, ...props }: PopUpProps) => {
   const ref = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
     const dialog = ref?.current;
 
-    if (isOpened === 'true') {
-      dialog?.show();
-      document.body.style.overflow = 'hidden';
+    if (modal) {
+      dialog?.showModal();
     } else {
+      dialog?.show();
+    }
+
+    document.body.style.overflow = 'hidden';
+
+    return () => {
       dialog?.close();
       document.body.style.overflow = 'auto';
-    }
-  }, [isOpened]);
+    };
+  }, [modal]);
+
+  useEffect(() => {
+    console.log('RETURN VALUE:', ref?.current?.returnValue);
+  }, [ref?.current?.returnValue]);
 
   return (
     <FocusLock>

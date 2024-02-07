@@ -18,9 +18,9 @@ export const Hero = () => {
       </div>
       <div className="relative z-10 mb-[462px] pt-10">
         <div className="container relative">
-          <h2 className="font-integralCF text-4xl font-bold leading-[34px] text-black">
+          <h1 className="font-integralCF text-4xl font-bold leading-[34px] text-black">
             FIND CLOTHES THAT MATCHES YOUR STYLE
-          </h2>
+          </h1>
           <p className="mt-5 font-satoshi leading-5 text-black/60">
             Browse through our diverse range of meticulously crafted garments,
             designed to bring out your individuality and cater to your sense of
@@ -30,7 +30,7 @@ export const Hero = () => {
             Shop Now
           </Link>
           <ListAdvantages />
-          <SvgStar className="star absolute bottom-[-190px] left-[6.92%] z-10 h-[44px] w-[44px]" />
+          <SvgStar className="star absolute bottom-[-190px] left-[6.92%] z-10 size-[44px]" />
           <SvgStar className="star absolute bottom-[-110px] right-[5.38%] z-10" />
         </div>
       </div>
