@@ -14,5 +14,7 @@
     "es2020": true
   },
   "plugins": ["drizzle", "promise"],
-  "rules": {}
+  "rules": {
+    "tailwindcss/no-custom-classname": 0
+  }
 }

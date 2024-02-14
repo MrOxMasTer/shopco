@@ -1,7 +1,10 @@
 'use client';
 
+import { X } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { ComponentProps, useEffect, useRef } from 'react';
-import FocusLock from 'react-focus-lock';
+import ReactFocusLock from 'react-focus-lock';
+import { cn } from '..';
 
 type PopUpProps = {
   modal?: boolean;
@@ -9,9 +12,10 @@ type PopUpProps = {
 
 export const PopUp = ({ className, children, modal, ...props }: PopUpProps) => {
   const ref = useRef<HTMLDialogElement>(null);
+  const router = useRouter();
 
   useEffect(() => {
-    const dialog = ref?.current;
+    const dialog = ref.current;
 
     if (modal) {
       dialog?.showModal();
@@ -22,20 +26,30 @@ export const PopUp = ({ className, children, modal, ...props }: PopUpProps) => {
     document.body.style.overflow = 'hidden';
 
     return () => {
-      dialog?.close();
       document.body.style.overflow = 'auto';
     };
   }, [modal]);
 
-  useEffect(() => {
-    console.log('RETURN VALUE:', ref?.current?.returnValue);
-  }, [ref?.current?.returnValue]);
+  function onDismiss() {
+    router.back();
+  }
 
   return (
-    <FocusLock>
-      <dialog className={className} ref={ref} {...props}>
+    <ReactFocusLock>
+      <dialog
+        className={cn('relative', className)}
+        onClose={onDismiss}
+        ref={ref}
+        {...props}>
+        <button
+          type="button"
+          aria-label="close popUp"
+          onClick={onDismiss}
+          className="absolute right-4 top-4 z-10">
+          <X width={30} height={30} />
+        </button>
         {children}
       </dialog>
-    </FocusLock>
+    </ReactFocusLock>
   );
 };

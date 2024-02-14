@@ -109,7 +109,31 @@
   }
 
   .field {
-    @apply shell min-h-[2.5rem];
+    @apply block;
+    background-color: inherit;
+
+    &:focus-within {
+      svg {
+        @apply text-black;
+      }
+    }
+
+    div {
+      @apply shell min-h-[2.5rem] gap-[0.875rem] bg-white drop-shadow-sm;
+    }
+
+    div > svg {
+      @apply max-w-[18px] shrink-0 text-black/40 transition duration-300 ease-in-out;
+    }
+
+    div > input {
+      @apply w-full  outline-none;
+      background-color: inherit;
+    }
+  }
+
+  .field_gr {
+    @apply field;
   }
 }
 

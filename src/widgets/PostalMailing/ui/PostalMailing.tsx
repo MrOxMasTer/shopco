@@ -17,16 +17,17 @@ export const PostalMailing = () => {
             Stay Upto Date About Our Latest Offers
           </h2>
           <form action={mailDelivery}>
-            <div className="field mt-8 h-[42px] gap-[14px] bg-white text-sm">
-              <SvgMail className="shrink-0" />
-              <input
-                // name="email"
-                autoComplete="email"
-                type="email"
-                placeholder="Enter your email address"
-                className="w-full outline-none"
-              />
-            </div>
+            <label className="field mt-8 text-sm [&>div]:h-[42px]">
+              <div>
+                <SvgMail />
+                <input
+                  // name="email"
+                  autoComplete="email"
+                  type="email"
+                  placeholder="Enter your email address"
+                />
+              </div>
+            </label>
             <button
               type="submit"
               className="btn_lght mt-3 h-[42px] border-0 text-sm font-medium">

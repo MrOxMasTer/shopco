@@ -19,7 +19,7 @@ export const Header = () => {
             <LinkCart aria-label="Link to the site of the cart" href={'/'} />
             <LinkProfile
               aria-label="Link leading to personal account"
-              href={'/sigin'}
+              href={'/signin'}
             />
           </div>
         </div>
