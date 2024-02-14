@@ -9,7 +9,8 @@
     "lint": "next lint",
     "migration:generate": "drizzle-kit generate:pg",
     "migration:push": "drizzle-kit push:pg",
-    "studio": "drizzle-kit studio --host 127.0.0.1"
+    "studio": "drizzle-kit studio --host 127.0.0.1",
+    "build:icons": "npx tsx ./build-icons.mts"
   },
   "browserslist": [
     ">0.5%",
@@ -40,7 +41,9 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@sly-cli/sly": "^1.8.0",
     "@svgr/webpack": "^8.1.0",
+    "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.11.16",
     "@types/pg": "^8.11.0",
     "@types/react": "^18.2.55",
@@ -56,6 +59,9 @@
     "eslint-plugin-drizzle": "^0.2.3",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-tailwindcss": "^3.14.2",
+    "fs-extra": "^11.2.0",
+    "glob": "^10.3.10",
+    "node-html-parser": "^6.1.12",
     "postcss": "^8.4.34",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^9.3.0",

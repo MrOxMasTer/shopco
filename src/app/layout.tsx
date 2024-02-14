@@ -31,6 +31,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <link rel="preload" as="image/svg+xml" href="/public/icons/sprite.svg" />
       <body
         className={cn(`${satoshi.variable} ${interfralCF.variable}`, {
           'debug-screens': process.env.NODE_ENV === 'development',

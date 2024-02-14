@@ -1,4 +1,5 @@
 export * from './shadcn';
+export * from './Icon';
 export * from './LinkCart';
 export * from './LinkIcon';
 export * from './LinkLogo';
