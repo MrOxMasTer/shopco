@@ -1,6 +1,7 @@
-import { LinkCart, LinkLogo, LinkMenu, LinkProfile } from '@/shared/ui';
+import { Icon, LinkLogo, LinkMenu } from '@/shared/ui';
 
 import { Search } from '@/shared/ui/Search';
+import Link from 'next/link';
 
 export const Header = () => {
   return (
@@ -16,11 +17,17 @@ export const Header = () => {
           </div>
           <div className="flex gap-3">
             <Search />
-            <LinkCart aria-label="Link to the site of the cart" href={'/'} />
-            <LinkProfile
+            <Link
+              className="text-2xl leading-[1px]"
+              aria-label="Link to the site of the cart"
+              href={'/'}>
+              <Icon name="cart" />
+            </Link>
+            <Link
               aria-label="Link leading to personal account"
-              href={'/signin'}
-            />
+              href={'/signin'}>
+              <Icon name="profile" />
+            </Link>
           </div>
         </div>
       </div>
