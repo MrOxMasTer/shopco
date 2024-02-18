@@ -1,5 +1,3 @@
-// 'use client';
-
 import { ListCardsProduct, Product } from '@/entities/Product';
 import Link from 'next/link';
 

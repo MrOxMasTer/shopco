@@ -1,4 +1,4 @@
-import { cn } from '@/shared/index';
+import { cn } from '@/shared';
 import { ComponentProps } from 'react';
 import { Product } from '../product.type';
 import { CardProduct } from './CardProduct';

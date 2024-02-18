@@ -1,9 +1,9 @@
-import SvgSearch from '@svg/search.svg?icon';
+import { Icon } from '.';
 
 export const Search = () => {
   return (
     <div>
-      <SvgSearch />
+      <Icon name="search" />
     </div>
   );
 };

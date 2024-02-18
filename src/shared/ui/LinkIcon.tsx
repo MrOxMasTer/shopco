@@ -1,14 +1,19 @@
 import Link from 'next/link';
-import React, { ComponentProps } from 'react';
-import { cn } from '..';
+import { ComponentProps } from 'react';
+import { Icon, cn } from '..';
 
 type LinkIconProps = {
-  href: string;
-  children: React.ReactNode;
-  theme: string;
-} & ComponentProps<typeof Link>;
+  theme?: 'lght' | 'dark';
+  iconClassName?: string;
+} & ComponentProps<typeof Link> &
+  ComponentProps<typeof Icon>;
 
 export const LinkIcon = ({
+  className,
+  iconClassName,
+  childClassName,
+  icon,
+  name,
   theme,
   children,
   href,
@@ -17,12 +22,19 @@ export const LinkIcon = ({
   return (
     <Link
       href={href}
-      className={cn('', {
+      className={cn('', className, {
+        // icon_base: !theme,
         icon_lght: theme === 'lght',
-        icon: theme === 'dark',
+        icon_dark: theme === 'dark',
       })}
       {...props}>
-      {children}
+      <Icon
+        className={iconClassName}
+        childClassName={childClassName}
+        icon={icon}
+        name={name}>
+        {children}
+      </Icon>
     </Link>
   );
 };

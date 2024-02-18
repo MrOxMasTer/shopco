@@ -1,5 +1,4 @@
-import { Rating } from '@/shared/ui';
-import SvgVerification from '@svg/verification.svg?icon';
+import { Icon, Rating } from '@/shared/ui';
 
 type CommentProps = {
   rating: number;
@@ -14,7 +13,7 @@ export const Comment = ({ rating, name, content, verified }: CommentProps) => {
       <Rating value={rating} />
       <div className="mt-3 flex items-center gap-[6px]">
         <div className="font-bold leading-[1.375rem]">{name}</div>
-        {verified ? <SvgVerification /> : null}
+        {verified ? <Icon name="verification" className="size-6" /> : null}
       </div>
       <blockquote className="mt-2 text-sm leading-5 text-black/60">
         &quot;{content}&quot;

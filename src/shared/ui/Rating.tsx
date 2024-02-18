@@ -1,7 +1,7 @@
 'use client';
 
-import { Star, StarHalf } from 'lucide-react';
 import { ComponentProps, useEffect, useId, useState } from 'react';
+import { Icon } from '.';
 
 type RatingProps = {
   value: number;
@@ -33,9 +33,9 @@ export const Rating = ({ value, ...props }: RatingProps) => {
       {normalValue.map((n, index) => {
         if (n === 1) {
           return (
-            <Star
-              width={18.5}
-              height={18.5}
+            <Icon
+              className="stroke-none text-[18.5px] leading-3"
+              name="lucide/star"
               key={id + index}
               fill="rgb(255, 198, 51)"
               strokeWidth={0}
@@ -43,9 +43,9 @@ export const Rating = ({ value, ...props }: RatingProps) => {
           );
         } else if (n === 0.5) {
           return (
-            <StarHalf
-              width={18.5}
-              height={18.5}
+            <Icon
+              className="text-[18.5px] leading-3"
+              name="lucide/star-half"
               key={id + index}
               fill="rgb(255, 198, 51)"
               strokeWidth={0}

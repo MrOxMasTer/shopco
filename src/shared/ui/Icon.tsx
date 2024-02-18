@@ -4,16 +4,18 @@ import { cn } from '..';
 
 export { IconName };
 
+type IconProps = {
+  name: IconName;
+  childClassName?: string;
+} & SVGProps<SVGSVGElement>;
+
 export const Icon = ({
   name,
   childClassName,
   className,
   children,
   ...props
-}: SVGProps<SVGSVGElement> & {
-  name: IconName;
-  childClassName?: string;
-}) => {
+}: IconProps) => {
   if (children) {
     return (
       <span
@@ -24,9 +26,7 @@ export const Icon = ({
     );
   }
   return (
-    <svg
-      {...props}
-      className={cn('inline h-[1em] w-[1em] self-center', className)}>
+    <svg {...props} className={cn('inline size-[1em] align-sub', className)}>
       <use href={`./icons/sprite.svg#${name}`} />
     </svg>
   );

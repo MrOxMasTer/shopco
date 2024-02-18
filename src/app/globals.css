@@ -64,11 +64,9 @@
 
   .icon_base {
     @apply flex items-center justify-center rounded-full;
-    min-height: 1.75rem;
-    min-width: 1.75rem;
   }
 
-  .icon {
+  .icon_dark {
     @apply icon_base bg-black;
   }
 
@@ -132,12 +130,6 @@
     }
   }
 
-  .field_gr {
-    @apply field;
-  }
-}
-
-@layer utilities {
   .list-advantages {
     @apply grid grid-cols-2 justify-center;
     column-gap: 27.5px;
@@ -202,6 +194,16 @@
       grid-row-start: 2;
       justify-content: start;
     }
+  }
+
+  .field_gr {
+    @apply field;
+  }
+}
+
+@layer utilities {
+  .mask-size {
+    mask-size: cover !important;
   }
 
   .image-hero {

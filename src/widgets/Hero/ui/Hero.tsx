@@ -1,5 +1,5 @@
 import BannerImage from '#/public/banner_image.jpeg';
-import SvgStar from '@svg/star.svg?icon';
+import { Icon } from '@/shared';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ListAdvantages } from './ListAdvantages';
@@ -30,8 +30,14 @@ export const Hero = () => {
             Shop Now
           </Link>
           <ListAdvantages />
-          <SvgStar className="star absolute bottom-[-190px] left-[6.92%] z-10 size-[44px]" />
-          <SvgStar className="star absolute bottom-[-110px] right-[5.38%] z-10" />
+          <Icon
+            name="star"
+            className="star absolute bottom-[-190px] left-[6.92%] z-10 text-[44px] leading-3"
+          />
+          <Icon
+            name="star"
+            className="star absolute bottom-[-110px] right-[5.38%] z-10 text-[76px]"
+          />
         </div>
       </div>
       <ListBrands />

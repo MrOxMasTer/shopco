@@ -26,11 +26,11 @@ export const OurHappyCustomers = () => {
           <div className="flex justify-between">
             <h2 className="stn_title text-left">Our Happy Customers</h2>
             <div className="relative flex items-end gap-[21px] self-end">
-              <CarouselPrevious className="static h-5 w-5 translate-y-0 border-[0px]">
-                <ArrowLeft className="h-5 w-5" />
+              <CarouselPrevious className="static size-5 translate-y-0 border-[0px]">
+                <ArrowLeft className="size-5" />
               </CarouselPrevious>
-              <CarouselNext className="static h-5 w-5 translate-y-0 border-[0px]">
-                <ArrowRight className="h-5 w-5" />
+              <CarouselNext className="static size-5 translate-y-0 border-[0px]">
+                <ArrowRight className="size-5" />
               </CarouselNext>
             </div>
           </div>

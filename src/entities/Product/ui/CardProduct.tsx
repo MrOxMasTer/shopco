@@ -1,5 +1,4 @@
-import { cn } from '@/shared/index';
-import { Rating } from '@/shared/ui';
+import { Rating, cn } from '@/shared';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ComponentProps } from 'react';
@@ -21,7 +20,7 @@ export const CardProduct = ({
       <Link href={`/`} aria-label={title}>
         <div className=" flex h-[200px] w-[198px] items-center justify-center  overflow-hidden rounded-[13.424px] bg-ebb">
           <Image
-            className="h-auto w-auto"
+            className="size-auto"
             src={src}
             alt={''}
             width={198}

@@ -31,6 +31,7 @@ const config: Config = {
       gallery: '#f0f0f0',
       greenHaze: '#01AB31',
       geyser: '#D6DCE5',
+      sunglow: '#ffc633',
     },
     boxShadow: {},
     extend: {

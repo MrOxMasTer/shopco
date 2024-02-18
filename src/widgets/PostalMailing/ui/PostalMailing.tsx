@@ -1,4 +1,4 @@
-import SvgMail from '@svg/mail.svg?icon';
+import { Icon } from '@/shared';
 
 export const PostalMailing = () => {
   const mailDelivery = async (formData: FormData) => {
@@ -19,7 +19,7 @@ export const PostalMailing = () => {
           <form action={mailDelivery}>
             <label className="field mt-8 text-sm [&>div]:h-[42px]">
               <div>
-                <SvgMail />
+                <Icon className="text-xl leading-3" name="mail" />
                 <input
                   // name="email"
                   autoComplete="email"
