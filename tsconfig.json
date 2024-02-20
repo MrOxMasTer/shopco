@@ -16,24 +16,23 @@
     // "declaration": true,
     "plugins": [
       {
-        "name": "next",
-      },
+        "name": "next"
+      }
     ],
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
       "#/*": ["./*"],
       "@db": ["src/db"],
-      "@svg/*": ["./src/shared/assets/svg/*"],
-    },
+      "@svg/*": ["./src/shared/assets/svg/*"]
+    }
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "*.d.ts",
+    "*.d.ts"
   ],
-  "exclude": ["node_modules"],
-  "files": ["svg.d.ts"],
+  "exclude": ["node_modules"]
 }
