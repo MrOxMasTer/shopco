@@ -1,11 +1,11 @@
-import { LinkIcon } from '@/shared';
-import { listSocial } from '../constants/listSocial';
+import { LinkIcon } from '@/shared/ui';
+import { listSocial } from '../model';
 
 export const ListSocial = () => {
   return (
     <ul className="mt-5 flex gap-3 text-sm leading-3">
       {listSocial.map(({ id, href, name, theme }, index) => (
-        <li key={id + index}>
+        <li key={id}>
           <LinkIcon
             className="size-[28px]"
             name={name}

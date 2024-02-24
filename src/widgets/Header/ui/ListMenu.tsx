@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { listMenu } from '../constants';
+import { listMenu } from '../model';
 
 export const ListMenu = () => {
   return (

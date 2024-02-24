@@ -14,8 +14,6 @@ export const {
 
         if (parsedCredentials.success) {
           const { email, password } = parsedCredentials.data;
-
-          const user = await
         }
 
         console.log('invalid credentials');

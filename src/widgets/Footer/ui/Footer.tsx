@@ -1,8 +1,5 @@
-import { LinkIcon } from '@/shared';
-import { company } from '../constants/listCompany';
-import { faq } from '../constants/listFAQ';
-import { help } from '../constants/listHelp';
-import { resources } from '../constants/listResources';
+import { LinkIcon } from '@/shared/ui';
+import { company, faq, help, resources } from '../model';
 import { ListBadge } from './ListBadge';
 import { ListLayoutMenu } from './ListLayoutMenu';
 import { ListSocial } from './ListSocial';

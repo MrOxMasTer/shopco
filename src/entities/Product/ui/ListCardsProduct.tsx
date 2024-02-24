@@ -1,6 +1,6 @@
-import { cn } from '@/shared';
+import { cn } from '@/shared/lib/utils';
 import { ComponentProps } from 'react';
-import { Product } from '../product.type';
+import { Product } from '../model/types';
 import { CardProduct } from './CardProduct';
 
 type ListCardsProductProps = {

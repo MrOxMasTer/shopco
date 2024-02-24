@@ -1,5 +1,5 @@
-import { Icon } from '@/shared';
-import { listBadge } from '../constants/listBadge';
+import { Icon } from '@/shared/ui';
+import { listBadge } from '../model/constants/listBadge';
 
 export const ListBadge = () => {
   return (

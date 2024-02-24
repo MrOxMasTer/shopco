@@ -1,5 +1,6 @@
 'use client';
 
+import { cn } from '@/shared/lib/utils';
 import useEmblaCarousel, {
   type EmblaCarouselType as CarouselApi,
   type EmblaOptionsType as CarouselOptions,
@@ -7,9 +8,7 @@ import useEmblaCarousel, {
 } from 'embla-carousel-react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import * as React from 'react';
-
-import { cn } from '@/shared/lib';
-import { Button } from '@/shared/ui/shadcn/Button';
+import { Button } from '.';
 
 type CarouselProps = {
   opts?: CarouselOptions;
@@ -214,7 +213,7 @@ const CarouselPrevious = React.forwardRef<
         disabled={!canScrollPrev}
         onClick={scrollPrev}
         {...props}>
-        {children ? children : <ArrowLeft className="h-4 w-4" />}
+        {children ? children : <ArrowLeft className="size-4" />}
         <span className="sr-only">Previous slide</span>
       </Button>
     );
@@ -247,7 +246,7 @@ const CarouselNext = React.forwardRef<
         disabled={!canScrollNext}
         onClick={scrollNext}
         {...props}>
-        {children ? children : <ArrowRight className="h-4 w-4" />}
+        {children ? children : <ArrowRight className="size-4" />}
         <span className="sr-only">Next slide</span>
       </Button>
     );

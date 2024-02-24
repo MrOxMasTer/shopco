@@ -4,7 +4,7 @@ import { X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { ComponentProps, useEffect, useRef } from 'react';
 import ReactFocusLock from 'react-focus-lock';
-import { cn } from '..';
+import { cn } from '../lib/utils';
 
 type PopUpProps = {
   modal?: boolean;

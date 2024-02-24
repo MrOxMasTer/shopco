@@ -1,6 +1,6 @@
 'use client';
 
-import { Comment } from '@/entities/User';
+import { Comment } from '@/entities/Comment';
 import {
   Carousel,
   CarouselContent,
@@ -10,7 +10,7 @@ import {
 } from '@/shared/ui';
 import Autoplay from 'embla-carousel-autoplay';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { listComments } from '../constants/listComments';
+import { listComments } from '../model';
 
 export const OurHappyCustomers = () => {
   return (

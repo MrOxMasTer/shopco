@@ -6,6 +6,7 @@
     "plugin:drizzle/recommended",
     "plugin:tailwindcss/recommended",
     "plugin:promise/recommended",
+    "plugin:@conarti/feature-sliced/recommended",
     "prettier"
   ],
   "env": {
@@ -15,6 +16,7 @@
   },
   "plugins": ["drizzle", "promise"],
   "rules": {
-    "tailwindcss/no-custom-classname": 0
+    "tailwindcss/no-custom-classname": 0,
+    "import/order": 0
   }
 }

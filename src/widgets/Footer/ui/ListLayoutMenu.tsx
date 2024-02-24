@@ -19,7 +19,7 @@ export const ListLayoutMenu = ({ title, list, ...props }: ListMenuProps) => {
       </h3>
       <ul className="mt-4 grid gap-4 text-sm leading-4 text-black/60">
         {list.map(({ id, content, href }, index) => (
-          <li key={id + index}>
+          <li key={id}>
             <Link href={href} aria-label={content}>
               {' '}
               {content}

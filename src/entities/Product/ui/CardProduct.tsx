@@ -1,4 +1,5 @@
-import { Rating, cn } from '@/shared';
+import { cn } from '@/shared/lib/utils';
+import { Rating } from '@/shared/ui';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ComponentProps } from 'react';

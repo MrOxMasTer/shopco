@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ComponentProps } from 'react';
-import { Icon, cn } from '..';
+import { Icon } from '.';
+import { cn } from '../lib/utils';
 
 type LinkIconProps = {
   theme?: 'lght' | 'dark';

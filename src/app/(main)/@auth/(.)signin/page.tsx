@@ -1,4 +1,5 @@
-import { PopUp, SignIn } from '@/shared';
+import { PopUp } from '@/shared/ui';
+import { SignIn } from '@/widgets/SignIn';
 
 export default function SignInPage() {
   return (

@@ -1,9 +1,9 @@
 import BannerImage from '#/public/banner_image.jpeg';
-import { Icon } from '@/shared';
+import { Icon } from '@/shared/ui';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ListAdvantages } from './ListAdvantages';
-import { ListBrands } from './ListBtands';
+import { ListBrands } from './ListBrands';
 
 export const Hero = () => {
   return (

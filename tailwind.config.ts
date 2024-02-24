@@ -23,6 +23,9 @@ const config: Config = {
     debugScreens: {},
     colors: {
       transparent: 'rgba(0, 0, 0, 0)',
+      current: 'currentColor',
+      inherit: 'inherit',
+      none: 'none',
       black: '#000',
       white: '#FFF',
       bonJour: '#F2F0F1',
