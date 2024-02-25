@@ -1,4 +1,4 @@
-import { InferInsertModel } from 'drizzle-orm';
+import { InferInsertModel, InferSelectModel } from 'drizzle-orm';
 import { char, pgEnum, pgTable, timestamp, varchar } from 'drizzle-orm/pg-core';
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
 import { nanoid } from 'nanoid';
@@ -20,4 +20,5 @@ export const users = pgTable('users', {
 export const insertUserSchema = createInsertSchema(users);
 export const selectUserSchema = createSelectSchema(users);
 
-export type User = InferInsertModel<typeof users>;
+export type InsertUser = InferInsertModel<typeof users>;
+export type SelectUser = InferSelectModel<typeof users>;
