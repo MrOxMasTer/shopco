@@ -18,8 +18,12 @@ export const {
         email: {},
         password: {},
       },
-      async authorize(credentials) {
+      async authorize(credentials, req) {
+        console.log('credentials: ', credentials);
+
         const parsedCredentials = insertUserSchema.safeParse(credentials);
+
+        console.log('success: ', parsedCredentials.success);
 
         if (parsedCredentials.success) {
           const { email, password } = parsedCredentials.data;
@@ -42,6 +46,7 @@ export const {
       },
     }),
   ],
+  callbacks: {},
   adapter: DrizzleAdapter(db),
   session: {
     strategy: 'jwt',

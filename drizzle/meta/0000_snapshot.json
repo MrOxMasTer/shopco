@@ -1,9 +1,107 @@
 {
-  "id": "4cb924ff-ce95-4167-a19a-ab9c26a3ebbc",
+  "id": "d43769fc-b9dd-46b5-8283-aae1c212930d",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
   "tables": {
+    "account": {
+      "name": "account",
+      "schema": "",
+      "columns": {
+        "userId": {
+          "name": "userId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "type": {
+          "name": "type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "provider": {
+          "name": "provider",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "providerAccountId": {
+          "name": "providerAccountId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "refresh_token": {
+          "name": "refresh_token",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "access_token": {
+          "name": "access_token",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "expires_at": {
+          "name": "expires_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "token_type": {
+          "name": "token_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "scope": {
+          "name": "scope",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "id_token": {
+          "name": "id_token",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "session_state": {
+          "name": "session_state",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "account_userId_users_id_fk": {
+          "name": "account_userId_users_id_fk",
+          "tableFrom": "account",
+          "tableTo": "users",
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "account_provider_providerAccountId_pk": {
+          "name": "account_provider_providerAccountId_pk",
+          "columns": [
+            "provider",
+            "providerAccountId"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    },
     "colors": {
       "name": "colors",
       "schema": "",
@@ -18,19 +116,34 @@
           "name": "name",
           "type": "varchar(128)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "value": {
           "name": "value",
           "type": "varchar(128)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         }
       },
       "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {
+        "colors_name_unique": {
+          "name": "colors_name_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "name"
+          ]
+        },
+        "colors_value_unique": {
+          "name": "colors_value_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "value"
+          ]
+        }
+      }
     },
     "products": {
       "name": "products",
@@ -47,6 +160,12 @@
           "type": "varchar(256)",
           "primaryKey": false,
           "notNull": true
+        },
+        "type": {
+          "name": "type",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
         },
         "rating": {
           "name": "rating",
@@ -81,7 +200,21 @@
         }
       },
       "indexes": {},
-      "foreignKeys": {},
+      "foreignKeys": {
+        "products_type_types_id_fk": {
+          "name": "products_type_types_id_fk",
+          "tableFrom": "products",
+          "tableTo": "types",
+          "columnsFrom": [
+            "type"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
@@ -199,6 +332,105 @@
       },
       "uniqueConstraints": {}
     },
+    "productsToStyles": {
+      "name": "productsToStyles",
+      "schema": "",
+      "columns": {
+        "productId": {
+          "name": "productId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "styleId": {
+          "name": "styleId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "productsToStyles_productId_products_id_fk": {
+          "name": "productsToStyles_productId_products_id_fk",
+          "tableFrom": "productsToStyles",
+          "tableTo": "products",
+          "columnsFrom": [
+            "productId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "productsToStyles_styleId_styles_id_fk": {
+          "name": "productsToStyles_styleId_styles_id_fk",
+          "tableFrom": "productsToStyles",
+          "tableTo": "styles",
+          "columnsFrom": [
+            "styleId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "productsToStyles_productId_styleId_pk": {
+          "name": "productsToStyles_productId_styleId_pk",
+          "columns": [
+            "productId",
+            "styleId"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "session": {
+      "name": "session",
+      "schema": "",
+      "columns": {
+        "sessionToken": {
+          "name": "sessionToken",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "userId": {
+          "name": "userId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "expires": {
+          "name": "expires",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "session_userId_users_id_fk": {
+          "name": "session_userId_users_id_fk",
+          "tableFrom": "session",
+          "tableTo": "users",
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
     "sizes": {
       "name": "sizes",
       "schema": "",
@@ -219,10 +451,177 @@
       "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "sizes_value_unique": {
+          "name": "sizes_value_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "value"
+          ]
+        }
+      }
+    },
+    "styles": {
+      "name": "styles",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "smallserial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "value": {
+          "name": "value",
+          "type": "varchar(128)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "styles_value_unique": {
+          "name": "styles_value_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "value"
+          ]
+        }
+      }
+    },
+    "types": {
+      "name": "types",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "value": {
+          "name": "value",
+          "type": "varchar(128)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "types_value_unique": {
+          "name": "types_value_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "value"
+          ]
+        }
+      }
+    },
+    "users": {
+      "name": "users",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "char(21)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "email": {
+          "name": "email",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "emailVerified": {
+          "name": "emailVerified",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "password": {
+          "name": "password",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "role": {
+          "name": "role",
+          "type": "roles",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'USER'"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "users_email_unique": {
+          "name": "users_email_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "email"
+          ]
+        }
+      }
+    },
+    "verificationToken": {
+      "name": "verificationToken",
+      "schema": "",
+      "columns": {
+        "identifier": {
+          "name": "identifier",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "token": {
+          "name": "token",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "expires": {
+          "name": "expires",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "verificationToken_identifier_token_pk": {
+          "name": "verificationToken_identifier_token_pk",
+          "columns": [
+            "identifier",
+            "token"
+          ]
+        }
+      },
       "uniqueConstraints": {}
     }
   },
-  "enums": {},
+  "enums": {
+    "roles": {
+      "name": "roles",
+      "values": {
+        "ADMIN": "ADMIN",
+        "USER": "USER"
+      }
+    }
+  },
   "schemas": {},
   "_meta": {
     "columns": {},

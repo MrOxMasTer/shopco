@@ -17,7 +17,20 @@ export const users = pgTable('users', {
   role: rolesEnum('role').default('USER'),
 });
 
-export const insertUserSchema = createInsertSchema(users);
+export const insertUserSchema = createInsertSchema(users, {
+  email: (schema) =>
+    schema.email.email({
+      message: 'Invalid email address',
+    }),
+  password: (schema) =>
+    schema.password
+      .min(8, {
+        message: 'Must be 8 or more characters long',
+      })
+      .max(50, {
+        message: 'Must be 50 or fewer characters long',
+      }),
+});
 export const selectUserSchema = createSelectSchema(users);
 
 export type InsertUser = InferInsertModel<typeof users>;

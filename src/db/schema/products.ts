@@ -13,7 +13,7 @@ import { productsToColors, productsToSizes, productsToStyles, types } from '.';
 export const products = pgTable('products', {
   id: serial('id').primaryKey(),
   name: varchar('name', { length: 256 }).notNull(),
-  type: integer('type').notNull().references(() => types.id),
+  type: integer('type').references(() => types.id),
   rating: numeric('rating', {
     precision: 2,
     scale: 1,

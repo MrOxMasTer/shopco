@@ -1,24 +1,23 @@
 'use server';
 
 import { signIn } from '@/auth';
-import { redirect } from 'next/navigation';
+import { AuthError } from 'next-auth';
 
 export const signInAction = async (formData: FormData) => {
-  console.log('email: ', formData.get('email'));
-
   const currentUser = {
     email: formData.get('email')?.toString(),
     password: formData.get('password')?.toString(),
   };
 
-  const response = await signIn('credentials', {
-    ...currentUser,
-    redirect: false,
-  });
-
-  if (response?.ok) {
-    redirect('/');
-  } else {
-    console.log(response?.error);
+  try {
+    await signIn('credentials', {
+      ...currentUser,
+      redirect: false,
+    });
+  } catch (error) {
+    if (error instanceof AuthError) {
+      // TODO: Kind user errors
+      return 'incorrect data';
+    }
   }
 };

@@ -1,4 +1,5 @@
 import { cn } from '@/shared/lib/utils/cn';
+import { Toaster } from '@/shared/ui';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
@@ -37,6 +38,7 @@ export default function RootLayout({
           'debug-screens': process.env.NODE_ENV === 'development',
         })}>
         {children}
+        <Toaster />
       </body>
     </html>
   );

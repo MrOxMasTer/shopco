@@ -1,7 +1,6 @@
 import 'server-only';
 
 import { drizzle } from 'drizzle-orm/node-postgres';
-import { migrate } from 'drizzle-orm/node-postgres/migrator';
 import { Pool } from 'pg';
 import * as schema from './schema';
 
@@ -14,7 +13,7 @@ const pool = new Pool({
 });
 export const db = drizzle(pool, { schema });
 
-await migrate(db, { migrationsFolder: 'drizzle' });
+// await migrate(db, { migrationsFolder: 'drizzle' });
 
 /* async function main() {
   console.log('Running your migrations...');
