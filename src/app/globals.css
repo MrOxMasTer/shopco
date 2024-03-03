@@ -88,7 +88,7 @@
   }
 
   .field {
-    @apply bg-inherit block;
+    @apply block bg-inherit;
 
     &:focus-within {
       svg {
@@ -97,15 +97,45 @@
     }
 
     div {
-      @apply shell min-h-[2.5rem] gap-[0.875rem] bg-white drop-shadow-sm;
+      @apply shell min-h-[2.5rem] gap-[0.875rem] bg-white shadow-sm;
     }
 
     div > svg {
-      @apply max-w-[18px] shrink-0 fill-white text-black/40 transition duration-300 ease-in-out;
+      @apply max-w-[18px] shrink-0 fill-white text-black/40 transition duration-300 ease-out;
     }
 
     div > input {
-      @apply bg-inherit w-full outline-none;
+      @apply w-full bg-inherit outline-none;
+    }
+
+    p {
+      @apply transition duration-300 ease-in-out;
+    }
+
+    p:empty {
+      @apply opacity-0;
+    }
+  }
+
+  .field_error {
+    @apply relative;
+
+    &:focus-within {
+      svg {
+        @apply text-redOrange;
+      }
+    }
+
+    div {
+      @apply shadow-redOrange/10;
+    }
+
+    div > svg {
+      @apply text-redOrange;
+    }
+
+    p {
+      @apply absolute bottom-[-20px] left-[16px] text-xs text-redOrange opacity-100;
     }
   }
 

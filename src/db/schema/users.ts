@@ -29,6 +29,18 @@ export const insertUserSchema = createInsertSchema(users, {
       })
       .max(50, {
         message: 'Must be 50 or fewer characters long',
+      })
+      .regex(/^.*(?=.*[#@!$%^&*()]).*$/, {
+        message: 'There must be at least 1 special character',
+      })
+      .regex(/^.*(?=.*[a-zа-яё]).*$/, {
+        message: 'There must be at least one lowercase letter',
+      })
+      .regex(/^.*(?=.*[A-ZА-ЯЁ]).*$/, {
+        message: 'There must be at least one uppercase letter',
+      })
+      .regex(/^.*(?=.*[0-9]).*$/, {
+        message: 'There must be at least one digit',
       }),
 });
 export const selectUserSchema = createSelectSchema(users);

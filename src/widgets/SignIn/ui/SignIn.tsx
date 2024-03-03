@@ -6,7 +6,7 @@ export const SignIn = () => {
     <div className="container relative bg-white pb-6 pt-4">
       <p className="stn_title">Sign In</p>
       <FormSignIn />
-      <p className="mt-1 text-center text-sm text-black/60">
+      <p className="mt-6 text-center text-sm text-black/60">
         You have not yet registered?{' '}
         <Link className="underline" href="/signup">
           sign Up
