@@ -27,18 +27,18 @@ export const {
         const { email, password } = credentials as TFormSignIn;
 
         // FIXME: Solve something with validation
-        if (email && password) {
-          const user = await getUserByEmail(email);
-          if (!user) return null;
+        // if (email && password) {
+        const user = await getUserByEmail(email);
+        if (!user) return null;
 
-          const secret = process.env.NEXTAUTH_SECRET;
-          if (!secret) return null;
+        const secret = process.env.NEXTAUTH_SECRET;
+        if (!secret) return null;
 
-          const validHash = await argon2.verify(user.password, password, {
-            secret: Buffer.from(secret),
-          });
-          if (validHash) return user;
-        }
+        const validHash = await argon2.verify(user.password, password, {
+          secret: Buffer.from(secret),
+        });
+        if (validHash) return user;
+        // }
 
         return null;
       },

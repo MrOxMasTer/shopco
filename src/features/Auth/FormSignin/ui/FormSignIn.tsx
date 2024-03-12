@@ -45,7 +45,7 @@ export const FormSignIn = () => {
         })}>
         <div>
           <Icon
-            className={cn('fill-white stroke-current text-2xl leading-3')}
+            className="fill-white stroke-current text-2xl leading-3"
             name="lucide/scan-face"
           />
           <input
