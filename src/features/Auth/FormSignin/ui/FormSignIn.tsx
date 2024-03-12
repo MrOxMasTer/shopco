@@ -24,7 +24,7 @@ export const FormSignIn = () => {
     defaultValues: {
       email: '',
       password: '',
-      ...(response?.fields ?? {}),
+      ...response?.fields,
     },
     mode: 'onTouched',
     reValidateMode: 'onChange',

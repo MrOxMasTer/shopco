@@ -1,6 +1,8 @@
 'use server';
 
 import { signIn } from '@/auth';
+import { insertUserSchema } from '@/db';
+import { AuthError } from 'next-auth';
 
 export const signInAction = async (prevState: unknown, formData: FormData) => {
   const currentUser = Object.fromEntries(formData);
@@ -8,30 +10,35 @@ export const signInAction = async (prevState: unknown, formData: FormData) => {
   console.log('prevState: ', prevState);
   console.log('user: ', currentUser);
 
-  // FIXME: Remove double validation when they correct the customization of errors
-  // const valid = insertUserSchema.safeParse(currentUser);
+  const valid = insertUserSchema.safeParse(currentUser);
 
-  // if (valid.success) {
-  // } else {
-  //   return {
-  //     message: 'incorrect data',
-  //     fields: currentUser,
-  //     issuesFields: valid.error.flatten().fieldErrors,
-  //   };
-  // }
+  if (valid.success) {
+    try {
+      await signIn('credentials', {
+        ...valid.data,
+        redirect: false,
+      });
+    } catch (error) {
+      if (error instanceof AuthError) {
+        console.log(error);
 
-  try {
-    await signIn('credentials', {
-      ...currentUser,
-      redirect: false,
-    });
-  } catch (error) {
-    console.log(error);
-
-    // TODO: Kind user errors
+        // TODO: Kind user errors
+        return {
+          message: error.message,
+          fields: valid.data,
+        };
+      }
+    }
+  } else if (valid.error) {
     return {
       message: 'incorrect data',
       fields: currentUser,
+      issuesFields: valid.error.flatten().fieldErrors,
     };
   }
+
+  return {
+    message: 'incorrect data',
+    fields: currentUser,
+  };
 };
