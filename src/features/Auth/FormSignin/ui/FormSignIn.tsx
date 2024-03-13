@@ -1,14 +1,13 @@
 'use client';
 
 import { cn } from '@/shared/lib/utils';
-import { Icon } from '@/shared/ui';
+import { Icon, Submit } from '@/shared/ui';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormEvent, useRef } from 'react';
 import { useFormState } from 'react-dom';
 import { useForm } from 'react-hook-form';
 import { signInAction } from '../api';
 import { TFormSignIn, formSignInSchema } from '../model';
-import { Submit } from './Submit';
 
 // TODO: Make a more smooth loss of errors
 // TODO!: Response Action error processing

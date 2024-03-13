@@ -34,7 +34,7 @@
     "embla-carousel-react": "8.0.0-rc17",
     "ky": "^1.2.2",
     "nanoid": "^5.0.6",
-    "next": "14.2.0-canary.18",
+    "next": "14.1.2-canary.3",
     "next-auth": "5.0.0-beta.15",
     "next-themes": "^0.2.1",
     "pg": "^8.11.3",

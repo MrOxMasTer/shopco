@@ -1,6 +1,6 @@
 import { db } from '@/db';
 import { DrizzleAdapter } from '@auth/drizzle-adapter';
-import argon2 from 'argon2';
+import * as argon2 from 'argon2';
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { getUserByEmail } from './entities/User';

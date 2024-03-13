@@ -1,20 +1,20 @@
-import createJiti from 'jiti';
-import { fileURLToPath } from 'node:url';
-const jiti = createJiti(fileURLToPath(import.meta.url));
+// import createJiti from 'jiti';
+// import { fileURLToPath } from 'node:url';
+// const jiti = createJiti(fileURLToPath(import.meta.url));
 
-// Import env here to validate during build. Using jiti we can import .ts files :)
-jiti('./src/shared/lib/utils/env.ts');
+// // Import env here to validate during build. Using jiti we can import .ts files :)
+// jiti('./src/shared/lib/utils/env.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
     ppr: true,
-    typedRoutes: true,
-    useLightningcss: true,
-    turbo: {
-      useSwcCss: true,
-      // rules - webpack
-    },
+    // typedRoutes: true,
+    // useLightningcss: true,
+    // turbo: {
+    //   // useSwcCss: true,
+    //   // rules - webpack
+    // },
   },
   logging: {
     fetches: {

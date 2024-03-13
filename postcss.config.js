@@ -1,4 +1,4 @@
-export default {
+const postCSSConfig = {
   plugins: {
     'postcss-flexbugs-fixes': {},
     'postcss-preset-env': {
@@ -16,3 +16,6 @@ export default {
     ...(process.env.NODE_ENV === 'production' ? { cssnano: {} } : {}),
   },
 };
+
+export default postCSSConfig;
+``;

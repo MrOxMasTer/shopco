@@ -1,7 +1,7 @@
 import { cn } from '@/shared/lib/utils/cn';
-import { Toaster } from '@/shared/ui';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import { Toaster } from 'sonner';
 import './globals.css';
 
 const satoshi = localFont({

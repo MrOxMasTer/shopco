@@ -10,10 +10,14 @@ export const users = pgTable('users', {
     .primaryKey()
     .notNull()
     .$default(() => nanoid()),
-  name: varchar('name', { length: 256 }),
-  email: varchar('email', { length: 256 }).notNull().unique(),
+  firstName: varchar('firstName', { length: 256 }),
+  LastName: varchar('surname', { length }),
+  email: varchar('email', { length: 256 }).unique().notNull(),
   emailVerified: timestamp('emailVerified', { mode: 'date' }),
   password: varchar('password').notNull(),
+  createAt: timestamp('createAt').defaultNow(),
+  verifiedAt: timestamp('verifiedAt'),
+  birthday: timestamp('birthday'),
   role: rolesEnum('role').default('USER'),
 });
 
