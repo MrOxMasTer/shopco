@@ -5,10 +5,11 @@ import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { getUserByEmail } from './entities/User';
 import { TFormSignIn } from './features/Auth/FormSignin';
+import { env } from './shared/lib/utils';
 
-class CustomError extends Error {
-  code = 'invalid core';
-}
+// class CustomError extends Error {
+//   code = 'invalid core';
+// }
 
 export const {
   handlers: { GET, POST },
@@ -31,7 +32,7 @@ export const {
         const user = await getUserByEmail(email);
         if (!user) return null;
 
-        const secret = process.env.NEXTAUTH_SECRET;
+        const secret = env.NEXTAUTH_SECRET;
         if (!secret) return null;
 
         const validHash = await argon2.verify(user.password, password, {

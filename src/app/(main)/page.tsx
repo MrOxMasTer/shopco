@@ -7,15 +7,13 @@ import { TopSelling } from '@/widgets/TopSelling';
 
 export default function Home() {
   return (
-    <>
-      <main>
-        <Hero />
-        <NewArrivals />
-        <TopSelling />
-        <DressStyle />
-        <OurHappyCustomers />
-        <PostalMailing />
-      </main>
-    </>
+    <main>
+      <Hero />
+      <NewArrivals />
+      <TopSelling />
+      <DressStyle />
+      <OurHappyCustomers />
+      <PostalMailing />
+    </main>
   );
 }

@@ -1,10 +1,12 @@
+'use client';
+
 import { cn } from '@/shared/lib/utils';
-import { Icon, Submit } from '@/shared/ui';
+import { Submit } from '@/shared/ui';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormEvent, useRef } from 'react';
 import { useFormState } from 'react-dom';
 import { useForm } from 'react-hook-form';
-import { TFormSignIn, formSignInSchema } from '../../FormSignin';
+import { formSignInSchema } from '../../FormSignin';
 import { signInAction } from '../../FormSignin/api';
 
 export const FormSignUp = () => {
@@ -14,9 +16,11 @@ export const FormSignUp = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<TFormSignIn>({
+  } = useForm({
     resolver: zodResolver(formSignInSchema),
     defaultValues: {
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
       ...response?.fields,
@@ -39,10 +43,6 @@ export const FormSignUp = () => {
           field_error: errors.email,
         })}>
         <div>
-          <Icon
-            className="fill-white stroke-current text-2xl leading-3"
-            name="lucide/scan-face"
-          />
           <input
             aria-invalid={!!errors.email}
             aria-required="true"
@@ -57,15 +57,32 @@ export const FormSignUp = () => {
           {errors.email ? errors.email?.message : null}
         </p>
       </label>
+
+      <label
+        className={cn('field mt-4', {
+          field_error: errors.email,
+        })}>
+        <div>
+          <input
+            aria-invalid={!!errors.email}
+            aria-required="true"
+            aria-describedby="error_email"
+            autoComplete="email"
+            placeholder="email"
+            type="text"
+            {...register('email', { required: true })}
+          />
+        </div>
+        <p id="error_email" aria-live="assertive">
+          {errors.email ? errors.email?.message : null}
+        </p>
+      </label>
+
       <label
         className={cn('field mt-6', {
           field_error: errors.password,
         })}>
         <div>
-          <Icon
-            className="fill-white stroke-current text-2xl leading-3"
-            name="lucide/key-round"
-          />
           <input
             aria-invalid={!!errors.password}
             aria-required="true"
@@ -80,7 +97,7 @@ export const FormSignUp = () => {
           {errors.password ? errors.password?.message : null}
         </p>
       </label>
-      <Submit />
+      <Submit>send</Submit>
     </form>
   );
 };

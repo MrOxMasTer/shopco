@@ -11,6 +11,7 @@ export type IconName =
 	| "instagram"
 	| "logo"
 	| "lucide/key-round"
+	| "lucide/move-right"
 	| "lucide/scan-face"
 	| "lucide/star-half"
 	| "lucide/star"

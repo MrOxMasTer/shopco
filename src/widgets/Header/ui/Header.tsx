@@ -34,7 +34,7 @@ export const Header = () => {
             <LinkIcon
               name="profile"
               aria-label="Link leading to personal account"
-              href={'/signin'}
+              href={'/auth'}
             />
           </div>
         </div>

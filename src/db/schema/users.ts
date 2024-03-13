@@ -11,14 +11,20 @@ export const users = pgTable('users', {
     .notNull()
     .$default(() => nanoid()),
   firstName: varchar('firstName', { length: 256 }),
-  LastName: varchar('surname', { length }),
+  lastName: varchar('lastName', { length: 256 }),
   email: varchar('email', { length: 256 }).unique().notNull(),
-  emailVerified: timestamp('emailVerified', { mode: 'date' }),
+  emailVerified: timestamp('emailVerified', {
+    mode: 'date',
+    withTimezone: true,
+  }),
   password: varchar('password').notNull(),
-  createAt: timestamp('createAt').defaultNow(),
-  verifiedAt: timestamp('verifiedAt'),
-  birthday: timestamp('birthday'),
+  phone: varchar('phone', { length: 128 }).unique(),
   role: rolesEnum('role').default('USER'),
+  createAt: timestamp('createAt', {
+    mode: 'date',
+    withTimezone: true,
+  }).defaultNow(),
+  birthday: timestamp('birthday'),
 });
 
 export const insertUserSchema = createInsertSchema(users, {

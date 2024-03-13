@@ -84,7 +84,7 @@ export const FormSignIn = () => {
           {errors.password ? errors.password?.message : null}
         </p>
       </label>
-      <Submit />
+      <Submit>send</Submit>
     </form>
   );
 };

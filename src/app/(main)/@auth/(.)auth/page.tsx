@@ -1,10 +1,9 @@
 import { PopUp } from '@/shared/ui';
-import { SignIn } from '@/widgets/SignIn';
 
-export default function SignInPage() {
+export default function AuthParralelRoute() {
   return (
     <PopUp modal={true} className="w-full rounded-[1.25rem]">
-      <SignIn />
+      <p>Sdasdasdasds</p>
     </PopUp>
   );
 }
