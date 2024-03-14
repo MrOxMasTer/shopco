@@ -1,3 +1,9 @@
+import { Auth } from '@/widgets/Auth';
+
 export default function AuthPage() {
-  return <main>dsdsd</main>;
+  return (
+    <main>
+      <Auth />
+    </main>
+  );
 }

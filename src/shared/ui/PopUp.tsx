@@ -37,7 +37,7 @@ export const PopUp = ({ className, children, modal, ...props }: PopUpProps) => {
   return (
     <ReactFocusLock>
       <dialog
-        className={cn('relative', className)}
+        className={cn('relative overflow-hidden', className)}
         onClose={onDismiss}
         ref={ref}
         {...props}>

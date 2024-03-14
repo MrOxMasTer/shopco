@@ -4,16 +4,21 @@ import { getUserByEmail } from '@/entities/User';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
-const checkUpUserAction = async (formData: FormData) => {
-  const field = formData.get('auth')?.toString();
+export const checkUpUserAction = async (
+  prevState: unknown,
+  formData: FormData,
+) => {
+  const field = formData.get('email')?.toString();
 
   const validEmail = z.string().email().safeParse(field);
 
   if (validEmail.success) {
-    const user = await getUserByEmail(field);
+    console.log(validEmail.data);
+
+    const user = await getUserByEmail(validEmail.data);
 
     if (user) return redirect('/signin');
   }
 
-  return redirect('/signup');
+  return redirect('/signin');
 };
