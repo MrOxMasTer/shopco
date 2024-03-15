@@ -38,9 +38,11 @@ export const FormCheckUpUser = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
+    if (!!!errorEmail) {
+      const formData = new FormData(e.currentTarget);
 
-    formAction(formData);
+      formAction(formData);
+    }
   };
 
   return (
@@ -64,6 +66,7 @@ export const FormCheckUpUser = () => {
             onBlur={handleBlur}
           />
         </div>
+        {/* FIXME: Fix the inscription */}
         <p id="error_email" aria-live="assertive">
           {errorEmail ? errorEmail[0].message : null}
         </p>

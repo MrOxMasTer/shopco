@@ -88,7 +88,7 @@
   }
 
   .field {
-    @apply block bg-inherit;
+    @apply relative block bg-inherit;
 
     &:focus-within {
       svg {
@@ -109,7 +109,7 @@
     }
 
     p {
-      @apply transition duration-300 ease-in-out;
+      @apply absolute bottom-[-20px] left-[16px] text-xs transition duration-300 ease-in-out;
     }
 
     p:empty {
@@ -135,7 +135,7 @@
     }
 
     p {
-      @apply absolute bottom-[-20px] left-[16px] text-xs text-redOrange opacity-100;
+      @apply text-redOrange opacity-100;
     }
   }
 

@@ -17,8 +17,8 @@ export const checkUpUserAction = async (
 
     const user = await getUserByEmail(validEmail.data);
 
-    if (user) return redirect('/signin');
+    if (user) return redirect('/auth/signin');
   }
 
-  return redirect('/signin');
+  return redirect(`/auth/signup`);
 };

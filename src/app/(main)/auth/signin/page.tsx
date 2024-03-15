@@ -1,9 +1,9 @@
-import { SignUp } from '@/widgets/SignUp';
+import { SignIn } from '@/widgets/SignIn';
 
 export default function SignInPage() {
   return (
     <main>
-      <SignUp />
+      <SignIn />
     </main>
   );
 }
