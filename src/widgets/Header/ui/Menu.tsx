@@ -1,5 +1,3 @@
-'use client';
-
 import { ListMenu } from './ListMenu';
 
 export const Menu = ({ ...props }) => {

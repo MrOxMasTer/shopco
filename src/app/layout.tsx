@@ -1,8 +1,9 @@
-import { cn } from '@/shared/lib/utils/cn';
+import { cn } from '@/shared/lib/utils';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import { Toaster } from 'sonner';
 import './globals.css';
+import { PreloadResources } from './preload-resources';
+import { Toaster } from 'sonner';
 
 const satoshi = localFont({
   src: '../shared/assets/fonts/Satoshi-Variable.ttf',
@@ -32,11 +33,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <link rel="preload" as="image/svg+xml" href="/public/icons/sprite.svg" />
       <body
         className={cn(`${satoshi.variable} ${interfralCF.variable}`, {
           'debug-screens': process.env.NODE_ENV === 'development',
         })}>
+        <PreloadResources />
         {children}
         <Toaster />
       </body>

@@ -27,7 +27,7 @@ export const Icon = ({
   }
   return (
     <svg {...props} className={cn('inline size-[1em] align-sub', className)}>
-      <use href={`./icons/sprite.svg#${name}`} />
+      <use href={`/icons/sprite.svg#${name}`} />
     </svg>
   );
 };

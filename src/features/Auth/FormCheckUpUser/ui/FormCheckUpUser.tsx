@@ -68,7 +68,11 @@ export const FormCheckUpUser = () => {
         </div>
         {/* FIXME: Fix the inscription */}
         <p id="error_email" aria-live="assertive">
-          {errorEmail ? errorEmail[0].message : null}
+          {errorEmail
+            ? errorEmail[0].message
+            : response
+              ? response[0].message
+              : null}
         </p>
       </label>
       <Submit className="mt-8">

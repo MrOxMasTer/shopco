@@ -1,8 +1,9 @@
 'use server';
 
 import { getUserByEmail } from '@/entities/User';
+import { emailSchema } from '@/shared/lib/utils';
+import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { z } from 'zod';
 
 export const checkUpUserAction = async (
   prevState: unknown,
@@ -10,15 +11,17 @@ export const checkUpUserAction = async (
 ) => {
   const field = formData.get('email')?.toString();
 
-  const validEmail = z.string().email().safeParse(field);
+  const valid = emailSchema.safeParse(field);
 
-  if (validEmail.success) {
-    console.log(validEmail.data);
+  if (valid.success) {
+    cookies().set('auth', valid.data, { httpOnly: true });
 
-    const user = await getUserByEmail(validEmail.data);
+    const user = await getUserByEmail(valid.data);
 
     if (user) return redirect('/auth/signin');
+
+    return redirect(`/auth/signup`);
   }
 
-  return redirect(`/auth/signup`);
+  return valid.error.issues;
 };
