@@ -29,9 +29,9 @@ export const PopUp = ({ className, children, modal, ...props }: PopUpProps) => {
       <Link
         passHref
         shallow
-        as={nextUrl}
+        as={pathname}
         className="absolute right-4 top-4 z-10"
-        href={pathname}>
+        href={nextUrl}>
         <Icon className="size-[30px] stroke-black" name="lucide/x" />
       </Link>
       {children}
