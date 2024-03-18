@@ -1,5 +1,5 @@
 import { cn } from '@/shared/lib/utils';
-import { PopUp } from '@/shared/ui';
+import { PopUp } from '@/shared/ui/PopUp';
 import { Menu } from '@/widgets/Header';
 
 export default function MenuPage() {

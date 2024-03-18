@@ -1,9 +1,6 @@
-// 'use client';
-
-import { ComponentProps } from 'react';
-// import ReactFocusLock from 'react-focus-lock';
 import { headers } from 'next/headers';
 import Link from 'next/link';
+import { ComponentProps } from 'react';
 import { URL } from 'url';
 import { Icon } from '.';
 import { cn } from '../lib/utils';
@@ -24,14 +21,11 @@ export const PopUp = ({ className, children, modal, ...props }: PopUpProps) => {
   console.log('Pathname: ', pathname);
   console.log('href: ', href);
 
+  // document.body.style.overflow = 'hidden';
+
   return (
     <div className={cn('relative overflow-hidden', className)}>
-      <Link
-        passHref
-        shallow
-        as={pathname}
-        className="absolute right-4 top-4 z-10"
-        href={nextUrl}>
+      <Link className="absolute right-4 top-4 z-10" href={nextUrl}>
         <Icon className="size-[30px] stroke-black" name="lucide/x" />
       </Link>
       {children}
@@ -50,8 +44,6 @@ export const PopUp = ({ className, children, modal, ...props }: PopUpProps) => {
 
 // useEffect(() => {
 //   const dialog = ref.current;
-
-//   document.body.style.overflow = 'hidden';
 
 //   return () => {
 //     document.body.style.overflow = 'auto';
