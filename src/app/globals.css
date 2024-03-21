@@ -96,6 +96,16 @@
       }
     }
 
+    &:has(input:autofill) {
+      div {
+        @apply bg-gallery;
+      }
+    }
+
+    input:autofill {
+      background-color: #000;
+    }
+
     div {
       @apply shell min-h-[2.5rem] gap-[0.875rem] bg-white shadow-sm;
     }

@@ -1,9 +1,9 @@
 import { headers } from 'next/headers';
 import Link from 'next/link';
 import { ComponentProps } from 'react';
-import { URL } from 'url';
 import { Icon } from '.';
 import { cn } from '../lib/utils';
+import { FocusLock } from './FocusLock';
 
 type PopUpProps = {
   modal?: boolean;
@@ -17,19 +17,31 @@ export const PopUp = ({ className, children, modal, ...props }: PopUpProps) => {
 
   const href = referer ?? '/';
 
-  console.log('nextURL:', nextUrl);
-  console.log('Pathname: ', pathname);
-  console.log('href: ', href);
+  console.log('nextURL:', `'${nextUrl}'`);
+  console.log('Pathname: ', `'${pathname}'`);
+  console.log('href: ', `'${href}'`);
 
-  // document.body.style.overflow = 'hidden';
+  // FIXME: Waiting for an Issue solution for Github
+  // If not:
+  // 1) Restore the client part:
+  // 1.1) overflow (document)
+  // 1.2) router.back()
+  // 1.3) React-lock
+  // 1.4) dialog
+
+  // If yes:
+  // 1) Solve something with ShowModal
+  // 2) Transfer the client part to a separate component (document, ...)
 
   return (
-    <div className={cn('relative overflow-hidden', className)}>
-      <Link className="absolute right-4 top-4 z-10" href={nextUrl}>
-        <Icon className="size-[30px] stroke-black" name="lucide/x" />
-      </Link>
-      {children}
-    </div>
+    <FocusLock>
+      <dialog open className={cn('relative overflow-hidden', className)}>
+        <Link className="absolute right-4 top-4 z-10" href={nextUrl}>
+          <Icon className="size-[30px] stroke-black" name="lucide/x" />
+        </Link>
+        {children}
+      </dialog>
+    </FocusLock>
   );
 };
 

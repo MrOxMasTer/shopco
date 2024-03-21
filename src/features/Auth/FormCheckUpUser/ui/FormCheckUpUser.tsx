@@ -10,7 +10,9 @@ import { checkUpUserAction } from '../api';
 export const FormCheckUpUser = () => {
   const [response, formAction] = useFormState(checkUpUserAction, null);
   const [fieldEmail, setFieldEmail] = useState('');
-  const [errorEmail, setErrorEmail] = useState<ZodIssue[] | null>(null);
+  const [errorEmail, setErrorEmail] = useState<ZodIssue[] | null>(
+    response ?? null,
+  );
   const refDirt = useRef(false);
 
   const validField = (value: string) => {
@@ -45,15 +47,23 @@ export const FormCheckUpUser = () => {
     }
   };
 
+  const handleInvalid = (e: FormEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    e.currentTarget.focus();
+  };
+
+  // FIXME: Change fields for proper Autofill backlight
+  // FIXME: Add basic validation html
   return (
-    <form action={formAction} onSubmit={handleSubmit} className="mt-2">
+    <form onSubmit={handleSubmit} className="mt-2">
       <label
         className={cn('field', {
           field_error: !!errorEmail,
         })}>
-        <div>
+        <div className="">
           <Icon name="mail" />
           <input
+            autoFocus
             name="email"
             aria-invalid={!!errorEmail}
             aria-required="true"
@@ -62,8 +72,10 @@ export const FormCheckUpUser = () => {
             type="email"
             autoComplete="email"
             placeholder="email"
+            required
             onChange={handleChange}
             onBlur={handleBlur}
+            onInvalid={handleInvalid}
           />
         </div>
         {/* FIXME: Fix the inscription */}
