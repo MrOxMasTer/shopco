@@ -35,8 +35,11 @@ export const PopUp = ({ className, children, modal, ...props }: PopUpProps) => {
 
   return (
     <FocusLock>
-      <dialog open className={cn('relative overflow-hidden', className)}>
-        <Link className="absolute right-4 top-4 z-10" href={nextUrl}>
+      <dialog
+        {...props}
+        open
+        className={cn('relative overflow-hidden', className)}>
+        <Link className="absolute right-4 top-4 z-10" href={pathname}>
           <Icon className="size-[30px] stroke-black" name="lucide/x" />
         </Link>
         {children}

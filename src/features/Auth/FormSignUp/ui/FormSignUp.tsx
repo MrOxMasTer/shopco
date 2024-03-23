@@ -1,103 +1,91 @@
 'use client';
 
-import { cn } from '@/shared/lib/utils';
-import { Submit } from '@/shared/ui';
+import { Field, Submit } from '@/shared/ui';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FormEvent, useRef } from 'react';
+import { FormEvent } from 'react';
 import { useFormState } from 'react-dom';
 import { useForm } from 'react-hook-form';
 import { formSignInSchema } from '../../FormSignin';
 import { signInAction } from '../../FormSignin/api';
 
-export const FormSignUp = () => {
-  const formRef = useRef<HTMLFormElement>(null);
+type TypeFormSignUp = {
+  auth?: string;
+};
+
+export const FormSignUp = ({ auth }: TypeFormSignUp) => {
   const [response, formAction] = useFormState(signInAction, null);
   const {
     register,
-    handleSubmit,
+    handleSubmit: formSubmit,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(formSignInSchema),
     defaultValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
+      email: auth,
+      password: '123',
       ...response?.fields,
     },
     mode: 'onTouched',
     reValidateMode: 'onChange',
   });
 
+  console.log('register: ', { ...register('birthday', { required: true }) });
+
   // FIXME: problem with form.submit() and parallel routes
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     const formData = new FormData(e.currentTarget);
 
-    handleSubmit(() => formAction(formData))(e);
+    formSubmit(() => formAction(formData))(e);
   };
 
   return (
-    <form>
-      <label
-        className={cn('field mt-4', {
-          field_error: errors.email,
-        })}>
-        <div>
-          <input
-            aria-invalid={!!errors.email}
-            aria-required="true"
-            aria-describedby="error_email"
-            autoComplete="email"
-            placeholder="email"
-            type="text"
-            {...register('email', { required: true })}
-          />
-        </div>
-        <p id="error_email" aria-live="assertive">
-          {errors.email ? errors.email?.message : null}
-        </p>
-      </label>
+    <form className="pb-5">
+      <Field
+        readOnly
+        className="mt-5"
+        aria-invalid={!!errors.email}
+        defaultValue={auth}
+        aria-required="true"
+        aria-describedby="error_email"
+        autoComplete="email"
+        type="email"
+        placeholder="example@mail.com"
+        pattern="(?!\.)(?!.*\.\.)[a-zA-Z0-9_\-\+\.]*[a-zA-Z0-9_\-\+]@([a-zA-Z0-9][a-zA-Z0-9\-]*\.)+[a-zA-Z]{2,}"
+        required
+        subTitle="This is your email"
+        errorMessage={errors.email ? errors.email?.message : undefined}
+        register={{ ...register('email', { required: true }) }}
+      />
 
-      <label
-        className={cn('field mt-4', {
-          field_error: errors.email,
-        })}>
-        <div>
-          <input
-            aria-invalid={!!errors.email}
-            aria-required="true"
-            aria-describedby="error_email"
-            autoComplete="email"
-            placeholder="email"
-            type="text"
-            {...register('email', { required: true })}
-          />
-        </div>
-        <p id="error_email" aria-live="assertive">
-          {errors.email ? errors.email?.message : null}
-        </p>
-      </label>
+      <Field
+        type="password"
+        aria-invalid={!!errors.password}
+        aria-required="true"
+        aria-describedby="error_password"
+        placeholder="password"
+        autoComplete="new-password"
+        required
+        className="mt-7"
+        subTitle="This is your password"
+        errorMessage={errors.password ? errors.password?.message : undefined}
+        register={{ ...register('password', { required: true }) }}
+      />
 
-      <label
-        className={cn('field mt-6', {
-          field_error: errors.password,
-        })}>
-        <div>
-          <input
-            aria-invalid={!!errors.password}
-            aria-required="true"
-            aria-describedby="error_password"
-            placeholder="password"
-            autoComplete="current-password"
-            type="password"
-            {...register('password', { required: true })}
-          />
-        </div>
-        <p id="error_password" aria-live="assertive">
-          {errors.password ? errors.password?.message : null}
-        </p>
-      </label>
-      <Submit>send</Submit>
+      <Field
+        type="password"
+        aria-invalid={!!errors.password}
+        aria-required="true"
+        aria-describedby="error_password"
+        placeholder="password"
+        autoComplete="passwo"
+        required
+        className="mt-7"
+        subTitle="This is your password"
+        errorMessage={errors.password ? errors.password?.message : undefined}
+        register={{ ...register('password', { required: true }) }}
+      />
+
+      <Submit className="mt-10">send</Submit>
     </form>
   );
 };

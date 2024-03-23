@@ -1,9 +1,10 @@
 import { cn } from '@/shared/lib/utils';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import Script from 'next/script';
+import { Toaster } from 'sonner';
 import './globals.css';
 import { PreloadResources } from './preload-resources';
-import { Toaster } from 'sonner';
 
 const satoshi = localFont({
   src: '../shared/assets/fonts/Satoshi-Variable.ttf',
@@ -33,6 +34,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      {process.env.NODE_ENV === 'development' ? (
+        <Script src="http://localhost:8097" />
+      ) : null}
       <body
         className={cn(`${satoshi.variable} ${interfralCF.variable}`, {
           'debug-screens': process.env.NODE_ENV === 'development',

@@ -9,19 +9,22 @@ export const checkUpUserAction = async (
   prevState: unknown,
   formData: FormData,
 ) => {
-  const field = formData.get('email')?.toString();
+  console.log('prevState:', prevState);
 
+  const field = formData.get('email')?.toString();
   const valid = emailSchema.safeParse(field);
 
   if (valid.success) {
     cookies().set('auth', valid.data, { httpOnly: true });
 
     const user = await getUserByEmail(valid.data);
+    if (user) redirect('/auth/signin');
 
-    if (user) return redirect('/auth/signin');
-
-    return redirect(`/auth/signup`);
+    redirect(`/auth/signup`);
   }
 
-  return valid.error.issues;
+  return {
+    errors: valid.error.issues,
+    field,
+  };
 };

@@ -1,3 +1,9 @@
+import { SignUp } from '@/widgets/SignUp';
+
 export default function SignUpPage() {
-  return 'Register';
+  return (
+    <main>
+      <SignUp />
+    </main>
+  );
 }
