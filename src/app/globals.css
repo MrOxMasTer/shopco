@@ -4,18 +4,17 @@
 
 @layer base {
   :root {
-    font-size: 100%;
-    font-weight: 400;
-    line-height: 1.5rem;
+    background-color: theme(colors.white);
     color: theme(colors.black);
-    text-transform: none;
-    text-size-adjust: 100%;
-    text-rendering: optimizelegibility;
+    font-size: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-synthesis: none;
-
-    background-color: theme(colors.white);
+    font-weight: 400;
+    line-height: 1.5rem;
+    text-rendering: optimizelegibility;
+    text-size-adjust: 100%;
+    text-transform: none;
   }
 
   body {
@@ -66,15 +65,16 @@
 
   .discount_price {
     @apply text-black/40 line-through;
+
     text-decoration-line: strikethrough;
   }
 
   .container_products {
     @apply flex gap-4 overflow-x-scroll px-4 mt:px-16 md:px-20;
 
+    overflow: -moz-scrollbars-none;
     -ms-overflow-style: none; /* Internet Explorer 10+ */
     scrollbar-width: none; /* Firefox */
-    overflow: -moz-scrollbars-none;
 
     &::-webkit-scrollbar {
       display: none; /* Safari and Chrome */
@@ -83,8 +83,9 @@
 
   .badge {
     @apply flex h-[26px] w-10 items-center justify-center rounded-[4.6px] border border-solid border-geyser bg-white;
-    filter: drop-shadow(0px 0.384px 3.842px rgba(183, 183, 183, 0.08))
-      drop-shadow(0px 3.842px 7.684px rgba(183, 183, 183, 0.08));
+
+    filter: drop-shadow(0 0.384px 3.842px rgb(183 183 183 / 8%))
+      drop-shadow(0 3.842px 7.684px rgb(183 183 183 / 8%));
   }
 
   .field {
@@ -109,7 +110,7 @@
       }  */
 
       &:is(:autofill, :read-only) {
-        box-shadow: 0 0 0px 100px theme(colors.gallery) inset !important;
+        box-shadow: 0 0 0 100px theme(colors.gallery) inset !important;
 
         &:read-only {
           @apply text-black/50;
@@ -120,10 +121,7 @@
         @apply outline-none;
       }
 
-      &:is(
-          :invalid:not(:placeholder-shown):not(:focus),
-          [aria-invalid='true']
-        ) {
+      &:is(:invalid:not(:placeholder-shown, :focus), [aria-invalid='true']) {
         @apply shadow-redOrange/10;
 
         & ~ svg {
@@ -147,36 +145,37 @@
 
   .list-advantages {
     @apply grid grid-cols-2 justify-center;
-    column-gap: 27.5px;
-    row-gap: 14px;
+
+    gap: 14px 27.5px;
     grid-template-columns: repeat(2, auto);
 
     & > li {
       @apply flex;
+
       gap: 27.5px;
     }
 
     & > li > div > div {
       @apply text-2xl font-bold text-black;
+
       line-height: normal;
     }
 
     & > li > div > span {
       @apply block text-xs text-black/60;
+
       line-height: 22px;
     }
 
     & > li:first-child::after {
+      background: rgb(0 0 0 / 10%);
       content: '';
-
       height: 100%;
       width: 1px;
-      background: rgba(0, 0, 0, 0.1);
     }
 
     & > li:last-child {
-      grid-column-start: 1;
-      grid-column-end: 3;
+      grid-column: 1 / 3;
 
       div {
         @apply mx-auto;
@@ -186,6 +185,7 @@
 
   .list-brands {
     @apply container grid py-10;
+
     grid-template-columns: repeat(9, 1fr);
     row-gap: 22px;
 
@@ -222,10 +222,10 @@
   }
 
   .star {
-    opacity: 0;
     animation: imageHero 1s ease-in-out;
     animation-delay: 1s;
     animation-fill-mode: forwards;
+    opacity: 0;
   }
 }
 

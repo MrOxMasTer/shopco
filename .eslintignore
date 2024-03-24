@@ -1,0 +1,10 @@
+node_modules
+
+# Next.js & Vercel Directories
+.next
+.turbo
+.swc
+build
+
+# config
+*.config.js

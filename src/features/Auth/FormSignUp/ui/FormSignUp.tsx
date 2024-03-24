@@ -12,6 +12,10 @@ type TypeFormSignUp = {
   auth?: string;
 };
 
+// TODO: Creating a new scheme validation
+// TODO: Creating a new Server Action
+// TODO: Creation of the functionality of checking the second password on the side of the client and server
+
 export const FormSignUp = ({ auth }: TypeFormSignUp) => {
   const [response, formAction] = useFormState(signInAction, null);
   const {
