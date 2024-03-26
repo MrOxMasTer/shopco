@@ -1,4 +1,4 @@
-import { InferInsertModel, InferSelectModel } from 'drizzle-orm';
+import type { InferInsertModel, InferSelectModel } from 'drizzle-orm';
 import { char, pgEnum, pgTable, timestamp, varchar } from 'drizzle-orm/pg-core';
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
 import { nanoid } from 'nanoid';
@@ -6,18 +6,18 @@ import { nanoid } from 'nanoid';
 export const rolesEnum = pgEnum('roles', ['ADMIN', 'USER']);
 
 export const users = pgTable('users', {
+  email: varchar('email', { length: 256 }).unique().notNull(),
+  password: varchar('password').notNull(),
   id: char('id', { length: 21 })
     .primaryKey()
     .notNull()
     .$default(() => nanoid()),
   firstName: varchar('firstName', { length: 256 }),
   lastName: varchar('lastName', { length: 256 }),
-  email: varchar('email', { length: 256 }).unique().notNull(),
   emailVerified: timestamp('emailVerified', {
     mode: 'date',
     withTimezone: true,
   }),
-  password: varchar('password').notNull(),
   phone: varchar('phone', { length: 128 }).unique(),
   role: rolesEnum('role').default('USER'),
   createAt: timestamp('createAt', {

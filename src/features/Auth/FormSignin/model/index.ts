@@ -1,6 +1,7 @@
+import type { z } from 'zod';
+
 // Mandatory type of import
 import { insertUserSchema } from '@/db/schema';
-import { z } from 'zod';
 
 export const formSignInSchema = insertUserSchema.pick({
   email: true,

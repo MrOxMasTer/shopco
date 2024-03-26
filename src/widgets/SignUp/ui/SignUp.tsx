@@ -1,8 +1,16 @@
-import { FormSignUp } from '@/features/Auth/FormSignUp';
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
-export const SignUp = () => {
+import { getUserByEmail } from '@/entities/User';
+import { FormSignUp } from '@/features/Auth/FormSignUp';
+
+export const SignUp = async () => {
   const auth = cookies().get('auth')?.value;
+
+  if (!auth) redirect('/auth');
+
+  const user = await getUserByEmail(auth);
+  if (user) redirect('/auth/signin');
 
   return (
     <section>

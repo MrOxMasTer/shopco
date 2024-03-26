@@ -1,50 +1,56 @@
 'use client';
 
-import { Field, Submit } from '@/shared/ui';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FormEvent } from 'react';
-import { useFormState } from 'react-dom';
+import type { FormEvent } from 'react';
 import { useForm } from 'react-hook-form';
-import { formSignInSchema } from '../../FormSignin';
-import { signInAction } from '../../FormSignin/api';
+
+import { Field, Submit } from '@/shared/ui';
+
+import { formSignUpSchema, type TFormSignUp } from '../model';
 
 type TypeFormSignUp = {
-  auth?: string;
+  auth: string;
 };
 
-// TODO: Creating a new scheme validation
 // TODO: Creating a new Server Action
 // TODO: Creation of the functionality of checking the second password on the side of the client and server
 
 export const FormSignUp = ({ auth }: TypeFormSignUp) => {
-  const [response, formAction] = useFormState(signInAction, null);
+  // const [response, formAction] = useFormState(null, null);
   const {
     register,
     handleSubmit: formSubmit,
     formState: { errors },
-  } = useForm({
-    resolver: zodResolver(formSignInSchema),
+  } = useForm<TFormSignUp>({
+    resolver: zodResolver(formSignUpSchema),
     defaultValues: {
       email: auth,
-      password: '123',
-      ...response?.fields,
+      password: '',
+      confirmPassword: '',
     },
     mode: 'onTouched',
     reValidateMode: 'onChange',
   });
 
-  console.log('register: ', { ...register('birthday', { required: true }) });
-
   // FIXME: problem with form.submit() and parallel routes
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
     const formData = new FormData(e.currentTarget);
 
-    formSubmit(() => formAction(formData))(e);
+    console.log({
+      email: formData.get('email'),
+      password: formData.get('password'),
+      confirmPassword: formData.get('confirmPassword'),
+    });
+
+    // formSubmit(() => formAction(formData))(e);
   };
 
   return (
-    <form className="pb-5">
+    <form className="pb-5" onSubmit={handleSubmit}>
       <Field
+        iconName="mail"
         readOnly
         className="mt-5"
         aria-invalid={!!errors.email}
@@ -62,6 +68,7 @@ export const FormSignUp = ({ auth }: TypeFormSignUp) => {
       />
 
       <Field
+        iconName="lucide/lock"
         type="password"
         aria-invalid={!!errors.password}
         aria-required="true"
@@ -76,17 +83,20 @@ export const FormSignUp = ({ auth }: TypeFormSignUp) => {
       />
 
       <Field
+        iconName="lucide/shield"
         type="password"
-        aria-invalid={!!errors.password}
+        aria-invalid={!!errors.confirmPassword}
         aria-required="true"
         aria-describedby="error_password"
         placeholder="password"
-        autoComplete="passwo"
+        autoComplete="current-password" // of
         required
         className="mt-7"
-        subTitle="This is your password"
-        errorMessage={errors.password ? errors.password?.message : undefined}
-        register={{ ...register('password', { required: true }) }}
+        subTitle="Password confirmation"
+        errorMessage={
+          errors.confirmPassword ? errors.confirmPassword?.message : undefined
+        }
+        register={{ ...register('confirmPassword', { required: true }) }}
       />
 
       <Submit className="mt-10">send</Submit>

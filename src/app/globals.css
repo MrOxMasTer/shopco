@@ -138,6 +138,7 @@
       @apply absolute top-[2.8rem] pl-4 text-xs text-black/80 transition duration-300 ease-in-out;
     }
 
+    /* TODO: Fix that Stroke accepts text values */
     svg {
       @apply absolute left-4 top-[13px] max-w-[18px] fill-white text-black/40;
     }

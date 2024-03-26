@@ -1,5 +1,6 @@
-import { FormCheckUpUser } from '@/features/Auth/FormCheckUpUser/ui/FormCheckUpUser';
 import { cookies } from 'next/headers';
+
+import { FormCheckUpUser } from '@/features/Auth/FormCheckUpUser/ui/FormCheckUpUser';
 
 export const Auth = () => {
   const auth = cookies().get('auth')?.value;
