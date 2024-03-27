@@ -9,9 +9,9 @@ import { formSignUpSchema } from '../model';
 
 export const signUpAction = async (prevState: unknown, formData: FormData) => {
   const payload = {
-    email: formData.get('email'),
-    password: formData.get('password'),
-    confirmPassword: formData.get('confirmPassword'),
+    email: formData.get('email')?.toString(),
+    password: formData.get('password')?.toString(),
+    confirmPassword: formData.get('confirmPassword')?.toString(),
   };
 
   const valid = formSignUpSchema.safeParse(payload);

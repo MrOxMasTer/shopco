@@ -15,9 +15,8 @@ type TypeFormSignUp = {
   auth: string;
 };
 
-// TODO: Creating a new Server Action
-// TODO: Checking the second password on the client side
-// TODO: On the side of the server
+// FIXME: Fix the reaction when a 1 password is changed by 2
+// TODO: Add errors from the server to the site
 
 export const FormSignUp = ({ auth }: TypeFormSignUp) => {
   const [response, formAction] = useFormState(signUpAction, null);
@@ -28,7 +27,7 @@ export const FormSignUp = ({ auth }: TypeFormSignUp) => {
   } = useForm<TFormSignUp>({
     resolver: zodResolver(formSignUpSchema),
     defaultValues: {
-      email: auth,
+      email: '',
       password: '',
       confirmPassword: '',
     },
@@ -48,8 +47,20 @@ export const FormSignUp = ({ auth }: TypeFormSignUp) => {
       confirmPassword: formData.get('confirmPassword'),
     });
 
-    formSubmit(() => formAction(formData))(e);
+    // formSubmit(() => formAction(formData))(e);
   };
+
+  const errorEmail = response?.formErrors?.fieldErrors.email
+    ? response.formErrors.fieldErrors.email[0]
+    : errors.email?.message;
+
+  const errorPassword = response?.formErrors?.fieldErrors.password
+    ? response.formErrors.fieldErrors.password[0]
+    : errors.password?.message;
+
+  const errorConfirmPassword = response?.formErrors?.fieldErrors.confirmPassword
+    ? response.formErrors.fieldErrors.confirmPassword[0]
+    : errors.confirmPassword?.message;
 
   return (
     <form action={formAction} className="pb-5" onSubmit={handleSubmit}>
@@ -57,7 +68,7 @@ export const FormSignUp = ({ auth }: TypeFormSignUp) => {
         iconName="mail"
         readOnly
         className="mt-5"
-        aria-invalid={!!errors.email}
+        aria-invalid={!!errorEmail}
         defaultValue={auth}
         aria-required="true"
         aria-describedby="error_email"
@@ -67,40 +78,39 @@ export const FormSignUp = ({ auth }: TypeFormSignUp) => {
         pattern={emailPattern}
         required
         subTitle="This is your email"
-        errorMessage={errors.email ? errors.email?.message : undefined}
+        errorMessage={errorEmail}
         register={{ ...register('email', { required: true }) }}
       />
 
       <Field
         iconName="lucide/lock"
         type="password"
-        aria-invalid={!!errors.password}
+        aria-invalid={!!errorPassword}
         aria-required="true"
         aria-describedby="error_password"
         placeholder="password"
         autoComplete="new-password"
+        defaultValue={response?.fields.password}
         required
         className="mt-7"
         subTitle="This is your password"
-        errorMessage={errors.password ? errors.password?.message : undefined}
+        errorMessage={errorPassword}
         register={{ ...register('password', { required: true }) }}
       />
 
-      {/* FIXME: Fix the reaction when a 1 password is changed by 2 */}
       <Field
         iconName="lucide/shield"
         type="password"
-        aria-invalid={!!errors.confirmPassword}
+        aria-invalid={!!errorConfirmPassword}
         aria-required="true"
         aria-describedby="error_password"
         placeholder="password"
         autoComplete="current-password" // of
+        defaultValue={response?.fields.confirmPassword}
         // required
         className="mt-7"
         subTitle="Password confirmation"
-        errorMessage={
-          errors.confirmPassword ? errors.confirmPassword?.message : undefined
-        }
+        errorMessage={errorConfirmPassword}
         register={{ ...register('confirmPassword', { required: true }) }}
       />
 
