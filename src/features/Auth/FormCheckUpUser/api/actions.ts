@@ -1,9 +1,10 @@
 'use server';
 
-import { getUserByEmail } from '@/entities/User';
-import { emailSchema } from '@/shared/lib/utils';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
+
+import { getUserByEmail } from '@/entities/User';
+import { emailSchema } from '@/shared/lib/utils';
 
 export const checkUpUserAction = async (
   prevState: unknown,

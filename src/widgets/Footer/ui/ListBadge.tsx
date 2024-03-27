@@ -1,4 +1,5 @@
 import { Icon } from '@/shared/ui';
+
 import { listBadge } from '../model/constants/listBadge';
 
 export const ListBadge = () => {

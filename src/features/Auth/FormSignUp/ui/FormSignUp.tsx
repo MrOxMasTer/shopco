@@ -2,10 +2,13 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { FormEvent } from 'react';
+import { useFormState } from 'react-dom';
 import { useForm } from 'react-hook-form';
 
+import { emailPattern } from '@/shared/lib/utils';
 import { Field, Submit } from '@/shared/ui';
 
+import { signUpAction } from '../api/actions';
 import { formSignUpSchema, type TFormSignUp } from '../model';
 
 type TypeFormSignUp = {
@@ -13,10 +16,11 @@ type TypeFormSignUp = {
 };
 
 // TODO: Creating a new Server Action
-// TODO: Creation of the functionality of checking the second password on the side of the client and server
+// TODO: Checking the second password on the client side
+// TODO: On the side of the server
 
 export const FormSignUp = ({ auth }: TypeFormSignUp) => {
-  // const [response, formAction] = useFormState(null, null);
+  const [response, formAction] = useFormState(signUpAction, null);
   const {
     register,
     handleSubmit: formSubmit,
@@ -44,11 +48,11 @@ export const FormSignUp = ({ auth }: TypeFormSignUp) => {
       confirmPassword: formData.get('confirmPassword'),
     });
 
-    // formSubmit(() => formAction(formData))(e);
+    formSubmit(() => formAction(formData))(e);
   };
 
   return (
-    <form className="pb-5" onSubmit={handleSubmit}>
+    <form action={formAction} className="pb-5" onSubmit={handleSubmit}>
       <Field
         iconName="mail"
         readOnly
@@ -60,7 +64,7 @@ export const FormSignUp = ({ auth }: TypeFormSignUp) => {
         autoComplete="email"
         type="email"
         placeholder="example@mail.com"
-        pattern="(?!\.)(?!.*\.\.)[a-zA-Z0-9_\-\+\.]*[a-zA-Z0-9_\-\+]@([a-zA-Z0-9][a-zA-Z0-9\-]*\.)+[a-zA-Z]{2,}"
+        pattern={emailPattern}
         required
         subTitle="This is your email"
         errorMessage={errors.email ? errors.email?.message : undefined}
@@ -82,6 +86,7 @@ export const FormSignUp = ({ auth }: TypeFormSignUp) => {
         register={{ ...register('password', { required: true }) }}
       />
 
+      {/* FIXME: Fix the reaction when a 1 password is changed by 2 */}
       <Field
         iconName="lucide/shield"
         type="password"
@@ -90,7 +95,7 @@ export const FormSignUp = ({ auth }: TypeFormSignUp) => {
         aria-describedby="error_password"
         placeholder="password"
         autoComplete="current-password" // of
-        required
+        // required
         className="mt-7"
         subTitle="Password confirmation"
         errorMessage={

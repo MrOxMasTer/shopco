@@ -127,7 +127,21 @@ async function generateSvgSprite({
 
       svg.tagName = 'symbol';
       svg.setAttribute('id', iconName(file));
-      svg.removeAttribute('fill');
+
+      const valueFill = svg.getAttribute('fill');
+
+      if (valueFill !== 'none') {
+        svg.setAttribute('fill', 'currentColor');
+      }
+
+      if (
+        svg.hasAttribute('stroke-width') ||
+        svg.hasAttribute('stroke-linejoin')
+      ) {
+        svg.setAttribute('stroke', 'currentColor');
+      }
+
+      // svg.removeAttribute('fill');
       // svg.removeAttribute('xmlns');
       // svg.removeAttribute('xmlns:xlink');
       // svg.removeAttribute('version');

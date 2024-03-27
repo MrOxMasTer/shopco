@@ -8,6 +8,9 @@ export const signInAction = async (prevState: unknown, formData: FormData) => {
     password: formData.get('password'),
   };
 
+  // TODO: Fix the conclusion of field errors
+  // TODO: Remove the field from cookies ('Auth')
+
   try {
     await signIn('credentials', {
       ...currentUser,
@@ -15,7 +18,6 @@ export const signInAction = async (prevState: unknown, formData: FormData) => {
     });
   } catch (error) {
     if (error instanceof CustomError) {
-      console.log('AUTHERROR: ', error);
       return {
         message: error.message,
         fields: error.fields,

@@ -1,16 +1,16 @@
-import { IconName } from '#/name';
+import type { IconName } from '#/name';
 
-const list: {
+const list: Array<{
   name: IconName;
-}[] = [
+}> = [
   {
     name: 'Visa',
   },
   {
-    name: 'MasterCard',
+    name: 'Mastercard',
   },
   {
-    name: 'PayPal',
+    name: 'Paypal',
   },
   {
     name: 'GPay',

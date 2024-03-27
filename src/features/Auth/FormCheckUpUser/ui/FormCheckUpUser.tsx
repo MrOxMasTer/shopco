@@ -1,12 +1,13 @@
 'use client';
 
-import { emailSchema } from '@/shared/lib/utils';
-import { Field, Submit } from '@/shared/ui';
-import { ChangeEvent, FocusEvent, FormEvent, useRef, useState } from 'react';
+import type { ChangeEvent, FocusEvent, FormEvent } from 'react';
+import { useRef, useState } from 'react';
 import { useFormState } from 'react-dom';
-import { checkUpUserAction } from '../api';
 
-// TODO: Add auto-filling?
+import { emailPattern, emailSchema } from '@/shared/lib/utils';
+import { Field, Submit } from '@/shared/ui';
+
+import { checkUpUserAction } from '../api';
 
 type TypeFormCheckUpUser = {
   auth?: string;
@@ -41,7 +42,7 @@ export const FormCheckUpUser = ({ auth }: TypeFormCheckUpUser) => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!!!error) {
+    if (!error) {
       const formData = new FormData(e.currentTarget);
 
       formAction(formData);
@@ -67,7 +68,7 @@ export const FormCheckUpUser = ({ auth }: TypeFormCheckUpUser) => {
         type="email"
         autoComplete="email"
         placeholder="example@mail.com"
-        pattern="(?!\.)(?!.*\.\.)[a-zA-Z0-9_\-\+\.]*[a-zA-Z0-9_\-\+]@([a-zA-Z0-9][a-zA-Z0-9\-]*\.)+[a-zA-Z]{2,}"
+        pattern={emailPattern}
         required
         onChange={handleChange}
         onBlur={handleBlur}

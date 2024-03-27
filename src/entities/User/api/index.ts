@@ -1,4 +1,5 @@
 import { db } from '@/db';
+import { users, type InsertUser } from '@/db/schema';
 
 export const getUserByEmail = async (email?: string) => {
   if (!email) return null;
@@ -10,4 +11,8 @@ export const getUserByEmail = async (email?: string) => {
   if (user) return user;
 
   return null;
+};
+
+export const insertUser = async (user: InsertUser) => {
+  return db.insert(users).values(user).returning();
 };

@@ -1,4 +1,5 @@
 import { LinkIcon } from '@/shared/ui';
+
 import { company, faq, help, resources } from '../model';
 import { ListBadge } from './ListBadge';
 import { ListLayoutMenu } from './ListLayoutMenu';
@@ -9,7 +10,7 @@ export const Footer = () => {
     <footer>
       <div className="container pb-[4.8125rem]">
         <LinkIcon iconClassName="h-[1.4375em] w-[9em]" name="logo" href="/" />
-        <p className="mt-[0.875rem] text-sm text-black/60">
+        <p className="mt-3.5 text-sm text-black/60">
           We have clothes that suits your style and which you’re proud to wear.
           From women to men.
         </p>
