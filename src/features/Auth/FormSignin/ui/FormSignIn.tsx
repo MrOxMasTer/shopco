@@ -5,15 +5,19 @@ import type { FormEvent } from 'react';
 import { useFormState } from 'react-dom';
 import { useForm } from 'react-hook-form';
 
-import { cn } from '@/shared/lib/utils';
-import { Submit } from '@/shared/ui';
+import { emailPattern } from '@/shared/lib/utils';
+import { Field, Submit } from '@/shared/ui';
 
 import type { TFormSignIn } from '..';
 import { formSignInSchema, signInAction } from '..';
 
+type FormSignInProps = {
+  auth: string;
+};
+
 // TODO: Make a more smooth loss of errors
 // TODO!: Response Action error processing
-export const FormSignIn = () => {
+export const FormSignIn = ({ auth }: FormSignInProps) => {
   const [response, formAction] = useFormState(signInAction, null);
   const {
     register,
@@ -22,7 +26,7 @@ export const FormSignIn = () => {
   } = useForm<TFormSignIn>({
     resolver: zodResolver(formSignInSchema),
     defaultValues: {
-      email: '',
+      email: auth,
       password: '',
       ...response?.fields,
     },
@@ -38,58 +42,46 @@ export const FormSignIn = () => {
     })(e);
   };
 
-  // FIXME: Fix the fields in the form
+  const errorEmail = response?.formErrors?.fieldErrors.email
+    ? response.formErrors.fieldErrors.email[0]
+    : errors.email?.message;
+
+  const errorPassword = response?.formErrors?.fieldErrors.password
+    ? response.formErrors.fieldErrors.password[0]
+    : errors.password?.message;
+
   return (
     <form action={formAction} onSubmit={onSubmit}>
-      <label
-        className={cn('field mt-4', {
-          field_error: errors.email,
-        })}
-      >
-        <div>
-          {/* <Icon
-            className="fill-white stroke-current text-2xl leading-3"
-            name="lucide/scan-face"
-          /> */}
-          <input
-            aria-invalid={!!errors.email}
-            aria-required="true"
-            aria-describedby="error_email"
-            autoComplete="email"
-            placeholder="email"
-            type="text"
-            {...register('email', { required: true })}
-          />
-        </div>
-        <p id="error_email" aria-live="assertive">
-          {errors.email ? errors.email?.message : null}
-        </p>
-      </label>
-      <label
-        className={cn('field mt-6', {
-          field_error: errors.password,
-        })}
-      >
-        <div>
-          {/* <Icon
-            className="fill-white stroke-current text-2xl leading-3"
-            name="lucide/key-round"
-          /> */}
-          <input
-            aria-invalid={!!errors.password}
-            aria-required="true"
-            aria-describedby="error_password"
-            placeholder="password"
-            autoComplete="current-password"
-            type="password"
-            {...register('password', { required: true })}
-          />
-        </div>
-        <p id="error_password" aria-live="assertive">
-          {errors.password ? errors.password?.message : null}
-        </p>
-      </label>
-      <Submit className="mt-6">send</Submit>
+      <Field
+        readOnly
+        iconName="lucide/scan-face"
+        className="mt-4"
+        defaultValue={auth}
+        aria-invalid={!!errorEmail}
+        aria-required="true"
+        aria-describedby="error_email"
+        autoComplete="email"
+        placeholder="example@mail.com"
+        pattern={emailPattern}
+        type="email"
+        register={{ ...register('email', { required: true }) }}
+        errorMessage={errorEmail}
+      />
+
+      <Field
+        iconName="lucide/key-round"
+        className="mt-4"
+        aria-invalid={!!errorPassword}
+        aria-required="true"
+        aria-describedby="error_password"
+        placeholder="password"
+        autoComplete="current-password"
+        type="password"
+        register={{ ...register('password', { required: true }) }}
+        errorMessage={errorPassword}
+      />
+
+      <Submit className="mt-10">send</Submit>
     </form>
   );
 };

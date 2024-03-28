@@ -1,25 +1,26 @@
-import { headers } from 'next/headers';
 import Link from 'next/link';
-import { ComponentProps } from 'react';
-import { Icon } from '.';
-import { cn } from '../lib/utils';
+import type { ComponentProps } from 'react';
+
 import { FocusLock } from './FocusLock';
+import { cn } from '../lib/utils';
+
+import { Icon } from '.';
 
 type PopUpProps = {
   modal?: boolean;
 } & ComponentProps<'dialog'>;
 
 export const PopUp = ({ className, children, modal, ...props }: PopUpProps) => {
-  const header = headers();
-  const nextUrl = header.get('next-url') ?? '/';
-  const referer = header.get('referer');
-  const pathname = referer ? new URL(referer).pathname : '/';
+  // const header = headers();
+  // const nextUrl = header.get('next-url') ?? '/';
+  // const referer = header.get('referer');
+  // const pathname = referer ? new URL(referer).pathname : '/';
 
-  const href = referer ?? '/';
+  // const href = referer ?? '/';
 
-  console.log('nextURL:', `'${nextUrl}'`);
-  console.log('Pathname: ', `'${pathname}'`);
-  console.log('href: ', `'${href}'`);
+  // console.log('nextURL:', `'${nextUrl}'`);
+  // console.log('Pathname: ', `'${pathname}'`);
+  // console.log('href: ', `'${href}'`);
 
   // FIXME: Waiting for an Issue solution for Github
   // If not:
@@ -38,8 +39,9 @@ export const PopUp = ({ className, children, modal, ...props }: PopUpProps) => {
       <dialog
         {...props}
         open
-        className={cn('relative overflow-hidden', className)}>
-        <Link className="absolute right-4 top-4 z-10" href={pathname}>
+        className={cn('relative overflow-hidden', className)}
+      >
+        <Link className="absolute right-4 top-4 z-10" href={'/'}>
           <Icon className="size-[30px] stroke-black" name="lucide/x" />
         </Link>
         {children}

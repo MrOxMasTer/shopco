@@ -1,9 +1,11 @@
 'use server';
 
+import * as argon2 from 'argon2';
 import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 
-import { getUserByEmail, insertUser } from '@/entities/User';
+import { insertUser } from '@/entities/User';
+import { env } from '@/shared/lib/utils';
 
 import { formSignUpSchema } from '../model';
 
@@ -19,21 +21,21 @@ export const signUpAction = async (prevState: unknown, formData: FormData) => {
   const valid = formSignUpSchema.safeParse(credentials);
 
   if (valid.success) {
-    const user = await getUserByEmail(valid.data.email);
+    // FIXME: Check if the user has changed the cookie independently
+    // const user = await getUserByEmail(valid.data.email);
+    // if (user) redirect('/auth/signin');
 
-    if (user) {
-      // TODO: console.error('The user already exists');
+    const secret = env.NEXTAUTH_SECRET;
+    const hashedPassword = await argon2.hash(valid.data.password, {
+      secret: Buffer.from(secret),
+    });
 
-      // TODO: To come up with a user to come up with something
-      return {
-        message: 'The user already exists',
-        fields: valid.data,
-      };
-    }
+    const insertedUser = {
+      email: valid.data.email,
+      password: hashedPassword,
+    };
 
-    //TODO: Password hashching
-
-    await insertUser(valid.data);
+    await insertUser(insertedUser);
     revalidateTag('users'); // FIXME: Do you need it?
 
     redirect('/auth/signin');
