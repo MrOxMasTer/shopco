@@ -8,13 +8,15 @@ import { getUserByEmail, insertUser } from '@/entities/User';
 import { formSignUpSchema } from '../model';
 
 export const signUpAction = async (prevState: unknown, formData: FormData) => {
-  const payload = {
+  const credentials = {
     email: formData.get('email')?.toString(),
     password: formData.get('password')?.toString(),
     confirmPassword: formData.get('confirmPassword')?.toString(),
   };
 
-  const valid = formSignUpSchema.safeParse(payload);
+  console.error('Server Action: ', credentials);
+
+  const valid = formSignUpSchema.safeParse(credentials);
 
   if (valid.success) {
     const user = await getUserByEmail(valid.data.email);
@@ -22,11 +24,14 @@ export const signUpAction = async (prevState: unknown, formData: FormData) => {
     if (user) {
       // TODO: console.error('The user already exists');
 
+      // TODO: To come up with a user to come up with something
       return {
         message: 'The user already exists',
         fields: valid.data,
       };
     }
+
+    //TODO: Password hashching
 
     await insertUser(valid.data);
     revalidateTag('users'); // FIXME: Do you need it?
@@ -36,6 +41,6 @@ export const signUpAction = async (prevState: unknown, formData: FormData) => {
 
   return {
     formErrors: valid.error.formErrors,
-    fields: payload,
+    fields: credentials,
   };
 };

@@ -2,10 +2,12 @@ import { DrizzleAdapter } from '@auth/drizzle-adapter';
 import * as argon2 from 'argon2';
 import NextAuth, { AuthError } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import type { ZodError } from 'zod';
+import type { typeToFlattenedError } from 'zod';
 
-import { db, insertUserSchema } from '@/db';
+import { db } from '@/db';
 
+import type { InsertUser } from './db/schema';
+import { insertUserSchema } from './db/schema';
 import { getUserByEmail } from './entities/User';
 import { env } from './shared/lib/utils';
 
@@ -13,13 +15,13 @@ type Fields = { [k in string]: unknown };
 
 class CustomResponse {
   fields?: Fields;
-  validError?: ZodError;
+  formErrors?: typeToFlattenedError<InsertUser, string>;
 }
 
 // FIXME: Fix on Credentialssignin
 export class CustomError extends AuthError {
   fields?: Fields;
-  validError?: ZodError;
+  formErrors?: typeToFlattenedError<InsertUser, string>;
 
   constructor(
     message?: string,
@@ -33,7 +35,7 @@ export class CustomError extends AuthError {
         if (custom) {
           if (custom instanceof CustomResponse) {
             this.fields = custom.fields;
-            this.validError = custom.validError;
+            this.formErrors = custom.formErrors;
           } else {
             this.fields = custom;
           }
@@ -42,7 +44,7 @@ export class CustomError extends AuthError {
         super(message);
 
         this.fields = errorOptions.fields;
-        this.validError = errorOptions.validError;
+        this.formErrors = errorOptions.formErrors;
       }
     } else {
       super(message);
@@ -85,16 +87,19 @@ export const {
             secret: Buffer.from(secret),
           });
           if (validHash) return user;
-        } else {
-          throw new CustomError('Incorrect data', {
-            fields: credentials,
-            validError: valid.error,
-          });
         }
 
+        // @ts-ignore
+        console.log('valid Error:', valid.error);
         throw new CustomError('Incorrect data', {
+          // @ts-ignore
+          formErrors: valid.error.formErrors,
           fields: credentials,
         });
+
+        // throw new CustomError('Incorrect data', {
+        //   fields: credentials,
+        // });
       },
     }),
   ],

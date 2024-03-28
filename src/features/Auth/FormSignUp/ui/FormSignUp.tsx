@@ -15,8 +15,8 @@ type TypeFormSignUp = {
   auth: string;
 };
 
-// FIXME: Fix the reaction when a 1 password is changed by 2
-// TODO: Add errors from the server to the site
+// FIXME: Fix the reaction when a 1 password is changed by 2]
+// TODO: Process the root errors of shape
 
 export const FormSignUp = ({ auth }: TypeFormSignUp) => {
   const [response, formAction] = useFormState(signUpAction, null);
@@ -27,7 +27,7 @@ export const FormSignUp = ({ auth }: TypeFormSignUp) => {
   } = useForm<TFormSignUp>({
     resolver: zodResolver(formSignUpSchema),
     defaultValues: {
-      email: '',
+      email: auth,
       password: '',
       confirmPassword: '',
     },
@@ -47,7 +47,7 @@ export const FormSignUp = ({ auth }: TypeFormSignUp) => {
       confirmPassword: formData.get('confirmPassword'),
     });
 
-    // formSubmit(() => formAction(formData))(e);
+    formSubmit(() => formAction(formData))(e);
   };
 
   const errorEmail = response?.formErrors?.fieldErrors.email

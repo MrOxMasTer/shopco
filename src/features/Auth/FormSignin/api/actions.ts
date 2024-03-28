@@ -1,5 +1,8 @@
 'use server';
 
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+
 import { CustomError, signIn } from '@/auth';
 
 export const signInAction = async (prevState: unknown, formData: FormData) => {
@@ -9,7 +12,6 @@ export const signInAction = async (prevState: unknown, formData: FormData) => {
   };
 
   // TODO: Fix the conclusion of field errors
-  // TODO: Remove the field from cookies ('Auth')
 
   try {
     await signIn('credentials', {
@@ -21,7 +23,7 @@ export const signInAction = async (prevState: unknown, formData: FormData) => {
       return {
         message: error.message,
         fields: error.fields,
-        fieldErrors: error.validError?.flatten().fieldErrors,
+        formErrors: error.formErrors,
       };
     } else {
       return {
@@ -29,4 +31,7 @@ export const signInAction = async (prevState: unknown, formData: FormData) => {
       };
     }
   }
+
+  cookies().delete('auth');
+  redirect('/');
 };

@@ -7,7 +7,7 @@
       "plugins": ["drizzle", "promise", "import"],
       "extends": [
         "eslint:recommended",
-        "plugin:drizzle/recommended",
+        //      "plugin:drizzle/recommended",
         "plugin:tailwindcss/recommended",
         "plugin:promise/recommended",
         "plugin:@conarti/feature-sliced/recommended",
